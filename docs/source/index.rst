@@ -12,5 +12,6 @@ Contents
 
 .. toctree::
 
+   overview
    tutorials
    test
