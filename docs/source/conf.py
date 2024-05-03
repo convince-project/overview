@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = 'CONVINCE Toolchain'
+project = 'CONVINCE Toolchain Overview'
 copyright = '2024'
 author = 'CONVINCE Consortium'
 
