@@ -13,3 +13,5 @@ cd <path-to-convince_toolchain>/docs
 pip install -r requirements.txt
 make html
 ```
+
+It have been tested with Python 3.8.10 and pip version 24.0. 
