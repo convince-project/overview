@@ -14,11 +14,35 @@ In the following the components will be briefly described. For more details plea
 
 coverage-plan
 -------------
-To be filled by UoB.
+COVERAGE-PLAN is an online tool for *lifelong area coverage in dynamic and uncertain environments*.
+
+The current release of COVERAGE-PLAN operates on discrete grid environments. 
+COVERAGE-PLAN has two components: an online coverage planner, and a learned model of stochastic occupancy dynamics.
+The dynamics model `captures the probability that a grid cell becomes occupied or free in the next timestep <https://ieeexplore.ieee.org/abstract/document/6385629>`_.
+This model is learned over the robot's lifespan, where the model is updated after each coverage run using the robot's latest observations.
+The online coverage planner uses the learned model to build and solve a `partially observable Markov decision process (POMDP) <https://www.sciencedirect.com/science/article/pii/S000437029800023X?via%3Dihub>`_ for area coverage.
+The state-of-the-art `DESPOT <https://github.com/AdaCompNUS/despot>`_ algorithm is used to solve POMDPs.
+Before deployment, the user must specify the map dimensions, the robot's starting position, the robot's field of view, and the time bound on coverage.
+
+COVERAGE-PLAN and its documentation can be found `here <https://github.com/convince-project/coverage-plan>`__.
+The documentation contains a tutorial demonstrating the coverage planner.
+
 
 refine-plan
 -----------
-To be filled by UoB.
+REFINE-PLAN is an offline tool for *refining hand-designed behaviour trees (BTs)* to attain robustness under uncertainty, improving performance.
+
+
+Behaviour trees are input/output in the XML format defined in `BehaviorTree.cpp v3.8 <https://www.behaviortree.dev>`_.
+REFINE-PLAN extracts a state space from the hand-designed BT, and learns probabilistic `options <https://www.sciencedirect.com/science/article/pii/S0004370299000521>`_ in simulation which describe the execution of each action node.
+This simulation is provided by the user.
+State space extraction and option learning are not implemented in the current release.
+Given option set and extracted state space, REFINE-PLAN constructs a `semi-MDP <https://www.sciencedirect.com/science/article/pii/S0004370299000521>`_ and solves it using `Storm/Stormpy <https://moves-rwth.github.io/stormpy/>`_ to synthesise a policy.
+This policy is then converted back to a BT using `existing methods <https://ieeexplore.ieee.org/document/10105979>`_.
+
+
+REFINE-PLAN and its documentation can be found `here <https://github.com/convince-project/refine-plan>`__.
+The documentation contains a tutorial demonstrating the current functionality.
 
 active-plan
 -----------
