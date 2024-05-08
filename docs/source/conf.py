@@ -18,6 +18,7 @@ extensions = [
     
     'myst_parser',
     'sphinxcontrib.mermaid',
+    'sphinxcontrib.plantuml',
     # 'autodoc2',
 ]
 
@@ -62,3 +63,5 @@ epub_show_urls = 'footnote'
 # autodoc2_packages = [
 #     "../../jani_generator/src/jani_generator",
 # ]
+
+plantuml = 'java -jar /usr/share/plantuml/plantuml.jar'
