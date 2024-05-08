@@ -1,5 +1,5 @@
 CONVINCE Toolchain Overview
-===========================================
+===========================
 
 Welcome to the CONVINCE toolchain documentation. 
 The goal of the `CONVINCE project <https://convince-project.eu/>`_ is to provide an open source toolchain to improve robust robot deliberation with the help of planning, learning, and model checking techniques. 
@@ -13,27 +13,27 @@ TODO: IMAGE
 In the following the components will be briefly described. For more details please check out the individual repositories with their documentation and tutorial pages.
 
 coverage-plan
----------------
+-------------
 To be filled by UoB.
 
 refine-plan
----------------
+-----------
 To be filled by UoB.
 
 active-plan
----------------
+-----------
 To be filled by UoB.
 
 simulate-plan
----------------
+-------------
 To be filled by UoB.
 
 scan
----------------
+----
 To be filled by UniGe.
 
 moon
----------------
+----
 To be filled by UniGe.
 
 mc-toolchain-jani
@@ -44,7 +44,7 @@ The toolbox, which can be found `here <TODO>`_, consist of a script to convert m
 The second part of the provided toolchain components centers around system specifications given in ScXML and how to convert them into a plain Jani file for model checking. This comprises property specification in temporal logic, currently given in Jani, a behavior tree in XML, plugins and nodes in ScXML, and an environment specification in ScXML.
 
 model2code
----------------
+----------
 To be filled by IIT.
 
 smc-storm
