@@ -82,7 +82,6 @@ Contents
 
 .. toctree::
 
-   overview
    overview_plantuml
    tutorials
    test
