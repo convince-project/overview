@@ -37,10 +37,10 @@ moon
 To be filled by UniGe.
 
 mc-toolchain-jani
----------------
+-------------------
 This is a toolbox for converting all specifications of components of a robotic system under investigation into a format which can be given as input to model checkers for verifying the robustness of the system functionalities. The resulting format used for model checking is `JANI <https://jani-spec.org>`_. 
 
-The toolbox consist of a script to convert models describing the system and its environment together, given in the CONVINCE robotics JANI flavor as specified in the `data model repository <https://github.com/convince-project/data-model>`_, into `plain JANI <https://jani-spec.org>`_ accepted as input by model checkers. 
+The toolbox, which can be found `here <TODO>`_, consist of a script to convert models describing the system and its environment together, given in the CONVINCE robotics JANI flavor as specified in the `data model repository <https://github.com/convince-project/data-model>`_, into `plain JANI <https://jani-spec.org>`_ accepted as input by model checkers. 
 The second part of the provided toolchain components centers around system specifications given in ScXML and how to convert them into a plain Jani file for model checking. This comprises property specification in temporal logic, currently given in Jani, a behavior tree in XML, plugins and nodes in ScXML, and an environment specification in ScXML.
 
 model2code
@@ -49,7 +49,7 @@ To be filled by IIT.
 
 smc-storm
 ---------------
-This is a statistical model checking engine for DTMC models given in Jani, which has been implemented as an extension to the famous `Storm model checker <https://stormchecker.org>`_.
+This is a statistical model checking engine for DTMC models given in Jani, which has been implemented as an extension to the famous `Storm model checker <https://stormchecker.org>`_. The tool and its documentation can be found in this `repository <https://github.com/convince-project/smc_storm>`_.
 
 
 
