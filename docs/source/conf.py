@@ -65,4 +65,4 @@ epub_show_urls = 'footnote'
 # ]
 
 plantuml = 'java -jar /usr/share/plantuml/plantuml.jar'
-plantuml_output_format = 'svg'
+plantuml_output_format = 'svg_obj'
