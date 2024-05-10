@@ -6,7 +6,13 @@ This is the entry-point for the CONVINCE toolchain documentation. It provides an
 
 ## Build documentation
 
-To build the documentation page, run:
+To build the documentation page, `plantuml` needs to be installed to generate the interactive overview picture:
+
+```
+sudo apt install plantuml
+```
+
+Then the following command needs to be run to build the documentation:
 
 ```
 cd <path-to-convince_toolchain>/docs
