@@ -79,11 +79,8 @@ smc-storm
 This is a statistical model checking engine for DTMC models given in Jani, which has been implemented as an extension to the famous `Storm model checker <https://stormchecker.org>`_. The tool and its documentation can be found in this `repository <https://github.com/convince-project/smc_storm>`_.
 
 
-
-Contents
---------
-
 .. toctree::
+   :hidden:
 
    overview_plantuml
    tutorials
