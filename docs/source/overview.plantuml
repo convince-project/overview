@@ -1,4 +1,6 @@
-@startuml
+@startuml overview
+scale 700 width
+
 skinparam agent {
     BackgroundColor White
     BorderColor Black
