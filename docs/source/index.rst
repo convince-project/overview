@@ -10,6 +10,11 @@ The CONVINCE toolchain works as depicted in the :doc:`interactive overview pictu
 
 In the following the CONVINCE toolchain components are briefly described. For more details please check out the individual repositories with their documentation and tutorial pages.
 
+sit-aw
+------
+To be filled by CEA.
+
+
 coverage-plan
 -------------
 COVERAGE-PLAN is an online tool for *lifelong area coverage in dynamic and uncertain environments*.
