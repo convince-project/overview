@@ -20,6 +20,7 @@ jobs:
             - name: Install plantuml
               run: |
                     sudo apt install graphviz
+                    sudo ln -s /usr/bin/dot /usr/local/bin/dot
                     wget https://github.com/plantuml/plantuml/releases/download/v1.2024.4/plantuml-bsd-1.2024.4.jar
                     mkdir -p /usr/share/plantuml
                     sudo mv plantuml-bsd-1.2024.4.jar /usr/share/plantuml/plantuml.jar
