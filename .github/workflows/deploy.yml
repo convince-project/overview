@@ -7,7 +7,7 @@ on:
         branches: [ "main" ]
 
 jobs:
-    deploy:
+    build:
         runs-on: ubuntu-latest
         steps:
             # Checkout the repository
@@ -32,7 +32,10 @@ jobs:
               uses: actions/upload-pages-artifact@v3
               with:
                     path: docs/build/html
-            # # deploy the documentation to GitHub Pages
-            # - name: Deploy to github pages
-            #   id: deployment
-            #   uses: actions/deploy-pages@v4
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            # deploy the documentation to GitHub Pages
+            - name: Deploy to github pages
+              id: deployment
+              uses: actions/deploy-pages@v4
