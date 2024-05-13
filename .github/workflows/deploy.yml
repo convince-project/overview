@@ -1,0 +1,35 @@
+name: Deploy
+# Deploy sphinx documentation to GitHub Pages in docs branch
+
+
+on:
+    # Triggers the workflow on push or pull request events but only for the "main" branch
+    push:
+        branches: [ "main" ]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            # install the dependencies
+            - name: Install dependencies
+              run: pip install -r docs/requirements.txt
+            # install plantuml
+            - name: Install plantuml
+              run: |
+                    wget https://github.com/plantuml/plantuml/releases/download/v1.2024.4/plantuml-bsd-1.2024.4.jar
+                    sudo mv plantuml-bsd-1.2024.4.jar /usr/share/plantuml/plantuml.jar
+            # build the documentation
+            - name: Build documentation
+              run: |
+                    cd docs
+                    make html
+            # upload the documentation to GitHub Pages
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
+              with:
+                    path: docs/_build/html
+            # deploy the documentation to GitHub Pages
+            - name: Deploy to github pages
+              id: deployment
+              uses: actions/deploy-pages@v4
