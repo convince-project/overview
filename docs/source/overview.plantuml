@@ -83,7 +83,8 @@ refineplan -[hidden]-> simulateplan
 simulateplan -[hidden]-> activeplan
 ' }
 
-coverageplan .. rfunc
+coverageplan .. rskill
+activeplan <-> simulateplan : root-cause
 mdelib -> refineplan : "BT.cpp XML"
 refineplan -> rdelib : "BT.cpp XML"
 rdelib -> simulateplan : "BT.cpp XML"
@@ -99,17 +100,22 @@ agent moon #TECHNOLOGY [
 WP4 / UniGe
 ]
 ' together {
-agent scan #TECHNOLOGY [
-[[https:///github.com/convince-project/scan SCAN]]
-....
-WP4 / UniGe
-]
+' agent scan #TECHNOLOGY [
+' [[https:///github.com/convince-project/scan SCAN]]
+' ....
+' WP4 / UniGe
+' ]
 agent storm #TECHNOLOGY [
 [[https:///github.com/convince-project/smc_storm SMC-STORM]]
 ....
 WP4 / Bosch
+
+----
+[[https:///github.com/convince-project/scan SCAN]]
+....
+WP4 / UniGe
 ]
-scan -[hidden]-> storm
+' scan -[hidden]-> storm
 ' }
 ' together {
 agent jani #TECHNOLOGY [
@@ -126,18 +132,18 @@ WP4 / IIT
 ' activeplan -[hidden]-> jani
 activeplan -[hidden]-> modeltocode
 
-moon -[hidden]> scan
+' moon -[hidden]> scan
 moon -[hidden]-> rdelib
 
-moon <-- r : ???
+moon <-- r : ROS Communication
 
-m -> storm : "JANI"
-m -> scan : "ScXML"
+m -> storm : "JANI / SCXML"
+' m -> storm : "SCXML"
 
-r -> jani : "ScXML"
+r -> jani : "SCXML"
 jani -> m : "JANI"
-rfunc <- modeltocode : "CPP"
-modeltocode <- mfunc : "ScXML"
+rskill <- modeltocode : "CPP"
+modeltocode <- mskill : "SCXML"
 
 refineplan -[hidden]> jani
 @enduml
