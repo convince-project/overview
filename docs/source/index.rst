@@ -1,12 +1,15 @@
 CONVINCE Toolchain Overview
 ===========================
 
-.. uml::  overview.plantuml
 
 Welcome to the CONVINCE toolchain documentation. 
 The goal of the `CONVINCE project <https://convince-project.eu/>`_ is to provide an open source toolchain to improve robust robot deliberation with the help of planning, learning, and model checking techniques. 
 
 This is the entry-point for the CONVINCE toolchain documentation. It provides an overview of all the individual components which are part of the large toolchain. Those components can be used standalone and also linked together as required for individual use cases.
+
+.. uml::  overview.plantuml
+   :caption: CONVINCE Toolchain Overview
+   :alt: CONVINCE Toolchain Overview
 
 The CONVINCE toolchain works as depicted above. The individual repos and documentations are linked from there.
 
@@ -19,6 +22,20 @@ To be filled by CEA.
 
 coverage-plan
 -------------
+
+.. .. uml::
+
+..    agent "\nSkill Layer\n" as rskill #LightYellow
+
+..    agent coverageplan #PaleGreen [
+..    [[https:///github.com/convince-project/coverage-plan COVERAGE-PLAN]]
+..    ....
+..    WP3 / UoB
+..    ]
+
+..    rskill . coverageplan
+
+
 COVERAGE-PLAN is an online tool for *lifelong area coverage in dynamic and uncertain environments*.
 
 The current release of COVERAGE-PLAN operates on discrete grid environments. 
