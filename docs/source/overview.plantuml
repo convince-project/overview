@@ -60,12 +60,12 @@ agent coverageplan #PaleGreen [
 WP3 / UoB
 ]
 agent activeplan #PaleGreen [
-[[https://github.com/convince-project/active-plan ACTIVE-PLAN]]
+[[https://convince-project.github.io/overview/#active-plan ACTIVE-PLAN]]
 ....
 WP3 / UoB
 ] 
 agent simulateplan #PaleGreen [
-[[https://github.com/convince-project/simulate-plan SIMULATE-PLAN]]
+[[https://convince-project.github.io/overview/#simulate-plan SIMULATE-PLAN]]
 ....
 WP3 / UoB
 ] 
@@ -88,7 +88,7 @@ WP4 / UniGe
 ]
 ' ]
 agent stormscan #TECHNOLOGY [
-[[https://convince-project.github.io/overview/#smc_storm SMC-STORM]]
+[[https://convince-project.github.io/overview/#smc-storm SMC-STORM]]
 ....
 WP4 / Bosch
 
