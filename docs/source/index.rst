@@ -1,6 +1,8 @@
 CONVINCE Toolchain Overview
 ===========================
 
+.. uml::  overview.plantuml
+
 Welcome to the CONVINCE toolchain documentation. 
 The goal of the `CONVINCE project <https://convince-project.eu/>`_ is to provide an open source toolchain to improve robust robot deliberation with the help of planning, learning, and model checking techniques. 
 
@@ -82,5 +84,4 @@ This is a statistical model checking engine for DTMC models given in Jani, which
 .. toctree::
    :hidden:
 
-   overview_plantuml
    tutorials
