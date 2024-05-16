@@ -122,4 +122,19 @@ coverageplan -[hidden]> modeltocode
 
 refineplan -[hidden]-> modeltocode
 
+
+rectangle Legend {
+    agent a [
+    ]
+    agent b [
+    ]
+    a -> b : "data flow"
+
+    agent c [
+    ]
+    agent d [
+    ]
+    c . d : "contained in"
+}
+
 @enduml
