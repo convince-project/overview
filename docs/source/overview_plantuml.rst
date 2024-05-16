@@ -1,4 +1,0 @@
-Overview
-========
-
-.. uml::  overview.plantuml

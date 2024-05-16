@@ -1,22 +1,44 @@
 CONVINCE Toolchain Overview
 ===========================
 
+
 Welcome to the CONVINCE toolchain documentation. 
 The goal of the `CONVINCE project <https://convince-project.eu/>`_ is to provide an open source toolchain to improve robust robot deliberation with the help of planning, learning, and model checking techniques. 
 
 This is the entry-point for the CONVINCE toolchain documentation. It provides an overview of all the individual components which are part of the large toolchain. Those components can be used standalone and also linked together as required for individual use cases.
 
-The CONVINCE toolchain works as depicted in the :doc:`interactive overview picture <../overview_plantuml>`. The individual repos and documentations are linked from there.
+.. uml::  overview.plantuml
+   :caption: CONVINCE Toolchain Overview
+   :alt: CONVINCE Toolchain Overview
+
+The CONVINCE toolchain works as depicted above. The individual repos and documentations are linked from there.
 
 In the following the CONVINCE toolchain components are briefly described. For more details please check out the individual repositories with their documentation and tutorial pages.
 
 sit-aw
 ------
+`convince-project/sit-aw <https:///github.com/convince-project/sit-aw>`_
+
 To be filled by CEA.
 
 
 coverage-plan
 -------------
+`convince-project/coverage-plan <https:///github.com/convince-project/coverage-plan>`_
+
+.. .. uml::
+
+..    agent "\nSkill Layer\n" as rskill #LightYellow
+
+..    agent coverageplan #PaleGreen [
+..    [[https:///github.com/convince-project/coverage-plan COVERAGE-PLAN]]
+..    ....
+..    WP3 / UoB
+..    ]
+
+..    rskill . coverageplan
+
+
 COVERAGE-PLAN is an online tool for *lifelong area coverage in dynamic and uncertain environments*.
 
 The current release of COVERAGE-PLAN operates on discrete grid environments. 
@@ -33,6 +55,8 @@ The documentation contains a tutorial demonstrating the coverage planner.
 
 refine-plan
 -----------
+`convince-project/refine-plan <https:///github.com/convince-project/refine-plan>`_
+
 REFINE-PLAN is an offline tool for *refining hand-designed behaviour trees (BTs)* to attain robustness under uncertainty, improving performance.
 
 
@@ -49,22 +73,32 @@ The documentation contains a tutorial demonstrating the current functionality.
 
 active-plan
 -----------
+`convince-project/active-plan <https:///github.com/convince-project/active-plan>`_
+
 To be filled by UoB.
 
 simulate-plan
 -------------
+`convince-project/simulate-plan <https:///github.com/convince-project/simulate-plan>`_
+
 To be filled by UoB.
 
 scan
 ----
+`convince-project/scan <https:///github.com/convince-project/scan>`_
+
 To be filled by UniGe.
 
 moon
 ----
+`convince-project/moon <https:///github.com/convince-project/moon>`_
+
 To be filled by UniGe.
 
 mc-toolchain-jani
--------------------
+-----------------
+`convince-project/mc-toolchain-jani <https:///github.com/convince-project/mc-toolchain-jani>`_
+
 This is a toolbox for converting all specifications of components of a robotic system under investigation into a format which can be given as input to model checkers for verifying the robustness of the system functionalities. The resulting format used for model checking is `JANI <https://jani-spec.org>`_. 
 
 The toolbox, which can be found `here <TODO>`_, consist of a script to convert models describing the system and its environment together, given in the CONVINCE robotics JANI flavor as specified in the `data model repository <https://github.com/convince-project/data-model>`_, into `plain JANI <https://jani-spec.org>`_ accepted as input by model checkers. 
@@ -72,15 +106,18 @@ The second part of the provided toolchain components centers around system speci
 
 model2code
 ----------
+`convince-project/model2code <https:///github.com/convince-project/model2code>`_
+
 To be filled by IIT.
 
 smc-storm
----------------
+---------
+`convince-project/smc_storm <https:///github.com/convince-project/smc_storm>`_
+
 This is a statistical model checking engine for DTMC models given in Jani, which has been implemented as an extension to the famous `Storm model checker <https://stormchecker.org>`_. The tool and its documentation can be found in this `repository <https://github.com/convince-project/smc_storm>`_.
 
 
 .. toctree::
    :hidden:
 
-   overview_plantuml
    tutorials

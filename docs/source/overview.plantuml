@@ -32,40 +32,30 @@ file "Model" as m {
     mfunc --> menv
 }
 
-m -[hidden]> r
-
-renv -[hidden]> menv
-rdelib -[hidden]> mdelib
-
 database "Knowledge Model\n" as k 
-
-' renv -[hidden]> k
-' k -[hidden]> menv
 
 ' WP2
 
-' rectangle WP2 #line.dashed{
 agent sitaw #LightGreen [
-[[https:///github.com/convince-project/sit-aw SIT-AW]]
+[[https://convince-project.github.io/overview/#sit-aw SIT-AW]]
 ....
 WP2 / CEA
 ]
 ' }
 
-sitaw -[hidden]> rskill
+renv -[hidden]> sitaw
 rskill .. sitaw
 sitaw <-> k : OWL
 
 ' WP3
 
-' rectangle WP3 #line.dashed {
 agent refineplan #PaleGreen [
-[[https://github.com/convince-project/refine-plan REFINE-PLAN]]
+[[https://convince-project.github.io/overview/#refine-plan REFINE-PLAN]]
 ....
 WP3 / UoB
 ] 
 agent coverageplan #PaleGreen [
-[[https:///github.com/convince-project/coverage-plan COVERAGE-PLAN]]
+[[https://convince-project.github.io/overview/#coverage-plan COVERAGE-PLAN]]
 ....
 WP3 / UoB
 ]
@@ -79,71 +69,74 @@ agent simulateplan #PaleGreen [
 ....
 WP3 / UoB
 ] 
-refineplan -[hidden]-> simulateplan
-simulateplan -[hidden]-> activeplan
-' }
 
-coverageplan .. rskill
+rskill .. coverageplan
+rfunc -[hidden]> coverageplan
 activeplan <-> simulateplan : root-cause
-mdelib -> refineplan : "BT.cpp XML"
+mdelib -> refineplan : "\nBT.cpp XML"
 refineplan -> rdelib : "BT.cpp XML"
 rdelib -> simulateplan : "BT.cpp XML"
-k -> simulateplan : OWL
+k -> simulateplan : "\nOWL"
 k -> activeplan : OWL
 
 ' WP4
 
-' rectangle WP4 #line.dashed {
 agent moon #TECHNOLOGY [
-[[https:///github.com/convince-project/moon MOON]]
+[[https://convince-project.github.io/overview/#moon MOON]]
 ....
 WP4 / UniGe
 ]
-' together {
-' agent scan #TECHNOLOGY [
-' [[https:///github.com/convince-project/scan SCAN]]
-' ....
-' WP4 / UniGe
 ' ]
-agent storm #TECHNOLOGY [
-[[https:///github.com/convince-project/smc_storm SMC-STORM]]
+agent stormscan #TECHNOLOGY [
+[[https://convince-project.github.io/overview/#smc_storm SMC-STORM]]
 ....
 WP4 / Bosch
 
 ----
-[[https:///github.com/convince-project/scan SCAN]]
+[[https://convince-project.github.io/overview/#scan SCAN]]
 ....
 WP4 / UniGe
 ]
-' scan -[hidden]-> storm
-' }
-' together {
 agent jani #TECHNOLOGY [
-[[https:///github.com/convince-project/mc-toolchain-jani MC-TOOLCHAIN-JANI]]
+[[https://convince-project.github.io/overview/#mc-toolchain-jani MC-TOOLCHAIN-JANI]]
 ....
 WP4 / Bosch
 ]
 agent modeltocode #TECHNOLOGY [
-[[https:///github.com/convince-project/modeltocode MODEL2CODE]]
+[[https://convince-project.github.io/overview/#model2code MODEL2CODE]]
 ....
 WP4 / IIT
 ]
-' }
-' activeplan -[hidden]-> jani
-activeplan -[hidden]-> modeltocode
 
-' moon -[hidden]> scan
 moon -[hidden]-> rdelib
-
 moon <-- r : ROS Communication
 
-m -> storm : "JANI / SCXML"
-' m -> storm : "SCXML"
+stormscan -[hidden]-> mdelib
+stormscan <-- m : "JANI / SCXML\n"
 
 r -> jani : "SCXML"
-jani -> m : "JANI"
+jani -> m : "JANI\n"
 rskill <- modeltocode : "CPP"
-modeltocode <- mskill : "SCXML"
+modeltocode <- mskill : "SCXML\t\t\t"
+coverageplan -[hidden]> modeltocode
 
-refineplan -[hidden]> jani
+refineplan -[hidden]-> modeltocode
+
+
+rectangle Legend as legend {
+    agent a [
+    ]
+    agent b [
+    ]
+    a -> b : "data flow"
+
+    agent c [
+    ]
+    agent d [
+    ]
+    c . d : "contained in"
+}
+
+renv -[hidden]-> legend
+
 @enduml
