@@ -73,10 +73,10 @@ WP3 / UoB
 rskill .. coverageplan
 rfunc -[hidden]> coverageplan
 activeplan <-> simulateplan : root-cause
-mdelib -> refineplan : "BT.cpp XML"
+mdelib -> refineplan : "\nBT.cpp XML"
 refineplan -> rdelib : "BT.cpp XML"
 rdelib -> simulateplan : "BT.cpp XML"
-k -> simulateplan : OWL
+k -> simulateplan : "\nOWL"
 k -> activeplan : OWL
 
 ' WP4
@@ -112,12 +112,12 @@ moon -[hidden]-> rdelib
 moon <-- r : ROS Communication
 
 stormscan -[hidden]-> mdelib
-stormscan <-- m : "JANI / SCXML"
+stormscan <-- m : "JANI / SCXML\n"
 
 r -> jani : "SCXML"
-jani -> m : "JANI"
+jani -> m : "JANI\n"
 rskill <- modeltocode : "CPP"
-modeltocode <- mskill : "SCXML"
+modeltocode <- mskill : "SCXML\t\t\t"
 coverageplan -[hidden]> modeltocode
 
 refineplan -[hidden]-> modeltocode
