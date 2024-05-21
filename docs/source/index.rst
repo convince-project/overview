@@ -49,7 +49,7 @@ The online coverage planner uses the learned model to build and solve a `partial
 The state-of-the-art `DESPOT <https://github.com/AdaCompNUS/despot>`_ algorithm is used to solve POMDPs.
 Before deployment, the user must specify the map dimensions, the robot's starting position, the robot's field of view, and the time bound on coverage.
 
-COVERAGE-PLAN and its documentation can be found `here <https://github.com/convince-project/coverage-plan>`__.
+COVERAGE-PLAN can be found `here <https://github.com/convince-project/coverage-plan>`__ and its documentation can be found `here <https://convince-project.github.io/coverage-plan>`__.
 The documentation contains a tutorial demonstrating the coverage planner.
 
 
@@ -68,7 +68,7 @@ Given option set and extracted state space, REFINE-PLAN constructs a `semi-MDP <
 This policy is then converted back to a BT using `existing methods <https://ieeexplore.ieee.org/document/10105979>`_.
 
 
-REFINE-PLAN and its documentation can be found `here <https://github.com/convince-project/refine-plan>`__.
+REFINE-PLAN can be found `here <https://github.com/convince-project/refine-plan>`__ and its documentation can be found `here <https://convince-project.github.io/refine-plan>`__.
 The documentation contains a tutorial demonstrating the current functionality.
 
 active-plan
