@@ -108,7 +108,10 @@ model2code
 ----------
 `convince-project/model2code <https:///github.com/convince-project/model2code>`_
 
-To be filled by IIT.
+This is a tool to generate skill level code starting from an SCXML model.
+Starting from an SCXML model, XML file that describes the full model of the program, which includes the behavior tree, the skills and the components used in the system, and an XML file that describes the interfaces used between behavior tree and skills, and between skills and components, the program generates an header file and a source file that contains the code of the skill level.
+The skills generated are based on a behavior tree structure and will have a ROS2 tick service in case they are a condition a ROS2 tick and halt services in case they are an action.
+
 
 smc-storm
 ---------
