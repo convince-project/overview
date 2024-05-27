@@ -19,7 +19,11 @@ sit-aw
 ------
 `convince-project/sit-aw <https:///github.com/convince-project/sit-aw>`_
 
-To be filled by CEA.
+SIT-AW is a software pipeline for robot situation awareness. It enables known and unknown anomaly detection, identification and resolution.
+
+By the end of CONVINCE the pipeline will be made up of different software modules implementing approaches based on symbolic AI and deep learning. During robotic system operations, these modules will handle the detection and classification of unexpected situations (anomalies). Symbolic approaches rely on a knowledge base constituted by an ontology and its rules. Deep learning approaches rely on data collection, feature extraction and data fusion to be able to identify an anomaly as being known or unknown. The pipeline takes monitor alarms and sensory-data as inputs. Whenever an anomaly is classified as unknown, SIT-AW interacts with `ACTIVE-PLAN <https://convince-project.github.io/overview/#active-plan-simulate-plan>`_ to try to come up with an appropriate mitigation plan.
+
+For a list of available software modules in the current release of the SIT-AW pipeline refer to its `README <https://github.com/convince-project/sit-aw/tree/main/README.md>`_ file.
 
 
 coverage-plan
