@@ -71,17 +71,17 @@ This policy is then converted back to a BT using `existing methods <https://ieee
 REFINE-PLAN can be found `here <https://github.com/convince-project/refine-plan>`__ and its documentation can be found `here <https://convince-project.github.io/refine-plan>`__.
 The documentation contains a tutorial demonstrating the current functionality.
 
-active-plan
------------
-`convince-project/active-plan <https:///github.com/convince-project/active-plan>`_
+active-plan & simulate-plan
+-----------------------------
 
-To be filled by UoB.
+ACTIVE-PLAN and SIMULATE-PLAN are tools used for handling unknown anomalies.
+These tools are currently being developed.
+The input here is an anomalous state where the robot failed to perform an action, and the output is an anomaly-free state where the robot is now able to perform the action.
+ACTIVE-PLAN detects an anomaly through the use of `task and motion planning <https://arxiv.org/pdf/2304.08587>`__.
+`Failure Mode and Effects Analysis <https://iopscience.iop.org/article/10.1088/1757-899X/337/1/012033/pdf>`__ is used to store the anomalies we have encountered.
+This is fed into a Bayesian Network to calculate the Conditional Probability Tables using `PyAgrum <https://pypi.org/project/pyAgrum/>`__ to infer which solution SIMULATE-PLAN can use to resolve the anomalies.
+`Explainable AI planning <https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9635890>`__ is used to generate explanations about our systems, and these explanations will guide the robot to understand what went wrong and which actions need to be applied to reach an anomaly-free state.
 
-simulate-plan
--------------
-`convince-project/simulate-plan <https:///github.com/convince-project/simulate-plan>`_
-
-To be filled by UoB.
 
 scan
 ----
