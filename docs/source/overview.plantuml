@@ -49,9 +49,9 @@ WP2 / CEA
 ' }
 
 sitl <-> k : OWL
-sitaw <-> k : OWL
 renv -[hidden]> sitaw
 rskill .. sitaw
+sitaw <-> k : OWL
 
 ' WP3
 
