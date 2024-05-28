@@ -48,10 +48,10 @@ WP2 / CEA
 ]
 ' }
 
-renv -[hidden]> sitaw
-rskill .. sitaw
 sitl <-> k : OWL
 sitaw <-> k : OWL
+renv -[hidden]> sitaw
+rskill .. sitaw
 
 ' WP3
 
