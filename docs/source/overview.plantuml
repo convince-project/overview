@@ -50,8 +50,8 @@ WP2 / CEA
 
 renv -[hidden]> sitaw
 rskill .. sitaw
-sitaw <-> k : OWL
 sitl <-> k : OWL
+sitaw <-> k : OWL
 
 ' WP3
 
