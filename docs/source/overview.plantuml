@@ -41,11 +41,17 @@ agent sitaw #LightGreen [
 ....
 WP2 / CEA
 ]
+agent sitl #LightGreen [
+[[https://convince-project.github.io/overview/#sit-l SIT-L]]
+....
+WP2 / CEA
+]
 ' }
 
 renv -[hidden]> sitaw
 rskill .. sitaw
 sitaw <-> k : OWL
+sitl <-> k : OWL
 
 ' WP3
 
