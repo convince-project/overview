@@ -48,10 +48,11 @@ WP2 / CEA
 ]
 ' }
 
-sitl <-> k : OWL
 renv -[hidden]> sitaw
 rskill .. sitaw
 sitaw <-> k : OWL
+sitl <-> k : OWL
+
 
 ' WP3
 
@@ -144,5 +145,6 @@ rectangle Legend as legend {
 }
 
 renv -[hidden]-> legend
+sitl -[hidden]> legend
 
 @enduml
