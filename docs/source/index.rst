@@ -18,7 +18,7 @@ In the following the CONVINCE toolchain components are briefly described. For mo
 
 sit-l
 ------
-`convince-project/sit-aw <https:///github.com/convince-project/sit-l>`_
+`convince-project/sit-l <https:///github.com/convince-project/sit-l>`_
 
 To be filled by CEA
 
