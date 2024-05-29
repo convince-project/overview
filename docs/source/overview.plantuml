@@ -40,8 +40,8 @@ agent sitaw #LightGreen [
 [[https://convince-project.github.io/overview/#sit-aw SIT-AW]]
 ....
 WP2 / CEA
-]
-agent sitl #LightGreen [
+
+----
 [[https://convince-project.github.io/overview/#sit-l SIT-L]]
 ....
 WP2 / CEA
@@ -51,7 +51,6 @@ WP2 / CEA
 renv -[hidden]> sitaw
 rskill .. sitaw
 sitaw <-> k : OWL
-sitl <-> k : OWL
 
 
 ' WP3
@@ -145,6 +144,5 @@ rectangle Legend as legend {
 }
 
 renv -[hidden]-> legend
-sitl -[hidden]> legend
 
 @enduml
