@@ -16,21 +16,23 @@ The CONVINCE toolchain works as depicted above. The individual repos and documen
 In the following the CONVINCE toolchain components are briefly described. For more details please check out the individual repositories with their documentation and tutorial pages.
 
 
-sit-l
-------
-`convince-project/sit-l <https:///github.com/convince-project/sit-l>`_
-
-To be filled by CEA
-
 sit-aw
 ------
 `convince-project/sit-aw <https:///github.com/convince-project/sit-aw>`_
 
 SIT-AW is a software pipeline for robot situation awareness. It enables known and unknown anomaly detection, identification and resolution.
 
-By the end of CONVINCE the pipeline will be made up of different software modules implementing approaches based on symbolic AI and deep learning. During robotic system operations, these modules will handle the detection and classification of unexpected situations (anomalies). Symbolic approaches rely on a knowledge base constituted by an ontology and its rules. Deep learning approaches rely on data collection, feature extraction and data fusion to be able to identify an anomaly as being known or unknown. The pipeline takes monitor alarms and sensory-data as inputs. Whenever an anomaly is classified as unknown, SIT-AW interacts with `ACTIVE-PLAN <https://convince-project.github.io/overview/#active-plan-simulate-plan>`_ to try to come up with an appropriate mitigation plan.
+By the end of CONVINCE the pipeline will be made up of different software modules implementing approaches based on symbolic AI and deep learning. During robotic system operations, these modules will handle the detection and classification of unexpected situations (anomalies). Symbolic approaches rely on a knowledge base constituted by an ontology and its rules. Deep learning approaches rely on data collection, feature extraction and data fusion to be able to identify an anomaly as being known or unknown. The pipeline takes monitor alarms and sensory-data as inputs. Whenever an anomaly is classified as unknown, SIT-AW interacts with `ACTIVE-PLAN <https://convince-project.github.io/overview/#active-plan-simulate-plan>`_ to try to come up with an appropriate mitigation plan. This mitigation plan will be used in `SIT-L <https://convince-project.github.io/overview/#sit-l>`_ for learning new situations models.
 
 For a list of available software modules in the current release of the SIT-AW pipeline refer to its `README <https://github.com/convince-project/sit-aw/tree/main/README.md>`_ file.
+
+
+sit-l
+------
+
+SIT-L is a software module that implements techniques for the acquisition (learning) of new episodic and semantic memory from encountered unexpected situations that were not foreseen at design time (unknown anomalies). It closes the loop of robot situation awareness and increased robot autonomy. SIT-L is under development and will be release at a later stage of CONVINCE.
+
+SIT-L represents the extraction of the new anomaly description, given the preprocessed sensory-data, monitor outputs, ontologies and from the found solution to resolve the anomaly, i.e., the output of `ACTIVE-PLAN/SIMULATE-PLAN <https://convince-project.github.io/overview/#active-plan-simulate-plan>`_. A new pair (anomaly description, mitigation strategy) is then added to the current knowledge base, which implies learning a new situation. Indeed, if the system encounters this situation again, it will be able to identify the anomaly as known and resolve it.
 
 
 coverage-plan
