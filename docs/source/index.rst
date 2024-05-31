@@ -75,7 +75,7 @@ Behaviour trees are input/output in the XML format defined in `BehaviorTree.cpp 
 REFINE-PLAN extracts a state space from the hand-designed BT, and learns probabilistic `options <https://www.sciencedirect.com/science/article/pii/S0004370299000521>`_ in simulation which describe the execution of each action node.
 This simulation is provided by the user.
 State space extraction and option learning are not implemented in the current release.
-Given option set and extracted state space, REFINE-PLAN constructs a `semi-MDP <https://www.sciencedirect.com/science/article/pii/S0004370299000521>`_ and solves it using `Storm/Stormpy <https://moves-rwth.github.io/stormpy/>`_ to synthesise a policy.
+Given the option set and extracted state space, REFINE-PLAN constructs a `semi-MDP <https://www.sciencedirect.com/science/article/pii/S0004370299000521>`_ and solves it using `Storm/Stormpy <https://moves-rwth.github.io/stormpy/>`_ to synthesise a policy.
 This policy is then converted back to a BT using `existing methods <https://ieeexplore.ieee.org/document/10105979>`_.
 
 
