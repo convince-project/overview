@@ -24,7 +24,7 @@ SIT-AW is a software pipeline for robot situation awareness. It enables known an
 
 By the end of CONVINCE the pipeline will be made up of different software modules implementing approaches based on symbolic AI and deep learning. During robotic system operations, these modules will handle the detection and classification of unexpected situations (anomalies). Symbolic approaches rely on a knowledge base constituted by an ontology and its rules. Deep learning approaches rely on data collection, feature extraction and data fusion to be able to identify an anomaly as being known or unknown. The pipeline takes monitor alarms and sensory-data as inputs. Whenever an anomaly is classified as unknown, SIT-AW interacts with `ACTIVE-PLAN <https://convince-project.github.io/overview/#active-plan-simulate-plan>`_ to try to come up with an appropriate mitigation plan. This mitigation plan will be used in `SIT-L <https://convince-project.github.io/overview/#sit-l>`_ for learning new situations models.
 
-For a list of available software modules in the current release of the SIT-AW pipeline refer to its `README <https://github.com/convince-project/sit-aw/tree/main/README.md>`_ file.
+For a list of available software modules in the current release of the SIT-AW pipeline refer to its `README <https://github.com/convince-project/sit-aw/tree/main?tab=readme-ov-file>`_ file.
 
 
 sit-l
@@ -127,7 +127,7 @@ MOON (MOnitoring ONline) is a runtime monitor developed for CONVINCE
 on top of the `ROSMonitoring tool <https://github.com/autonomy-and-verification-uol/ROSMonitoring>`_. MOON accepts the same description of
 SCAN and provides monitor generation for properties and
 models. Currently, only monitor generation for properties is
-implememented on top of ROSMonitoring, working for ROS2 topics and
+implemented on top of ROSMonitoring, working for ROS2 topics and
 services. In perspective, the tool will include also monitoring for
 models, i.e., the capability of ensuring that the concrete execution
 of some elements of the control architecture or the environment
@@ -143,7 +143,7 @@ mc-toolchain-jani
 This is a toolbox for converting all specifications of components of a robotic system under investigation into a format which can be given as input to model checkers for verifying the robustness of the system functionalities. The resulting format used for model checking is `JANI <https://jani-spec.org>`_. 
 
 The toolbox consist of a script to convert models describing the system and its environment together, given in the CONVINCE robotics JANI flavor as specified in the `data model repository <https://github.com/convince-project/data-model>`_, into `plain JANI <https://jani-spec.org>`_ accepted as input by model checkers. 
-The second part of the toolbox centers around system specifications given in (SC)XML and how to convert them into a plain JANI file for model checking. This comprises property specification in temporal logic, currently given in JANI, a behavior tree in XML, ROS nodes and their pugins in SCXML, and an environment specification in SCXML.
+The second part of the toolbox centers around system specifications given in (SC)XML and how to convert them into a plain JANI file for model checking. This comprises property specification in temporal logic, currently given in JANI, a behavior tree in XML, ROS nodes and their plugins in SCXML, and an environment specification in SCXML.
 
 model2code
 ----------
