@@ -97,13 +97,44 @@ scan
 ----
 `convince-project/scan <https:///github.com/convince-project/scan>`_
 
-To be filled by UniGe.
+SCAN (StatistiCal ANalyzer) is a statistical model checker developed
+to verify large concurrent systems for which standard verification
+techniques do not scale. The input model of SCAN is a combination of
+Behavior Trees (BTs) described using behaviortree.cpp XML format, and
+state machines (FSMs) described using SCXML (State Chart XML) format;
+properties are described using an XML syntax for MTL (Metric Temporal
+Logic) interpreted over discrete time traces. SCAN translates the
+combination of BTs and FSMs into a Channel System (CS) whose
+executions are sampled in order to find violations of the specified
+properties or establish that such properties are verified 
+with some probability and within some confidence interval. The
+probability values and the size of the confidence intervals depend on
+the amount of time given to SCAN to verify the system: allowing more
+verification time will correspond to smaller confidence
+intervals. Also, if the model is probabilistic, then the final result
+of SCAN will depend on the probabilistic parameters of the model. In
+other words, if the model is deterministic, the probability of
+satisfaction and corresponding confidence interval attached to a
+specific property by SCAN will only depend on the computation time
+allowed, whereas if probabilistic computation is called for in the
+model, this will also influence the final result emitted by SCAN. 
 
 moon
 ----
 `convince-project/moon <https:///github.com/convince-project/moon>`_
 
-To be filled by UniGe.
+MOON (MOnitoring ONline) is a runtime monitor developed for CONVINCE
+on top of the ROSMonitoring tool. MOON accepts the same description of
+SCAN and provides monitor generation for properties and
+models. Currently, only monitor generation for properties is
+implememented on top of ROSMonitoring, working for ROS2 topics and
+services. In perspective, the tool will include also monitoring for
+models, i.e., the capability of ensuring that the concrete execution
+of some elements of the control architecture or the environment
+correspond to the abstract model utilized at design-time for
+SCAN. MOON will notify violations of properties and models so that
+other tools can be invoked to amend plans or models and adapt the
+control architecture to new and unforeseen situations. 
 
 mc-toolchain-jani
 -----------------
