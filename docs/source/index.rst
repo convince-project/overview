@@ -113,10 +113,10 @@ the amount of time given to SCAN to verify the system: allowing more
 verification time will correspond to smaller confidence
 intervals. Also, if the model is probabilistic, then the final result
 of SCAN will depend on the probabilistic parameters of the model. In
-other words, if the model is deterministic, the probability of
+other words, if the model is just non-deterministic, the probability of
 satisfaction and corresponding confidence interval attached to a
 specific property by SCAN will only depend on the computation time
-allowed, whereas if probabilistic computation is called for in the
+allowed, whereas if probabilities are attached to transitions in the
 model, this will also influence the final result emitted by SCAN. 
 
 moon
@@ -124,7 +124,7 @@ moon
 `convince-project/moon <https:///github.com/convince-project/moon>`_
 
 MOON (MOnitoring ONline) is a runtime monitor developed for CONVINCE
-on top of the ROSMonitoring tool. MOON accepts the same description of
+on top of the `ROSMonitoring tool <https://github.com/autonomy-and-verification-uol/ROSMonitoring>`_. MOON accepts the same description of
 SCAN and provides monitor generation for properties and
 models. Currently, only monitor generation for properties is
 implememented on top of ROSMonitoring, working for ROS2 topics and
