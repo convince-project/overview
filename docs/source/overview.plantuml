@@ -42,7 +42,7 @@ agent sitaw #LightGreen [
 WP2 / CEA
 
 ----
-[[https://convince-project.github.io/overview/#sit-l SIT-L]]
+[[https://convince-project.github.io/overview/#id1 SIT-L]]
 ....
 WP2 / CEA
 ]
@@ -66,12 +66,12 @@ agent coverageplan #PaleGreen [
 WP3 / UoB
 ]
 agent activeplan #PaleGreen [
-[[https://convince-project.github.io/overview/#active-plan-simulate-plan ACTIVE-PLAN]]
+[[https://convince-project.github.io/overview/#active-plan-and-simulate-plan ACTIVE-PLAN]]
 ....
 WP3 / UoB
 ] 
 agent simulateplan #PaleGreen [
-[[https://convince-project.github.io/overview/#active-plan-simulate-plan SIMULATE-PLAN]]
+[[https://convince-project.github.io/overview/#active-plan-and-simulate-plan SIMULATE-PLAN]]
 ....
 WP3 / UoB
 ] 
