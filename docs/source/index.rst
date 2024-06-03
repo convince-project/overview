@@ -83,7 +83,8 @@ This policy is then converted back to a BT using `existing methods <https://ieee
 REFINE-PLAN can be found `here <https://github.com/convince-project/refine-plan>`__ and its documentation can be found `here <https://convince-project.github.io/refine-plan>`__.
 The documentation contains a tutorial demonstrating the current functionality.
 
-active-plan & simulate-plan
+
+active-plan and simulate-plan
 -----------------------------
 ACTIVE-PLAN and SIMULATE-PLAN are tools used for handling unknown anomalies.
 These tools are currently being developed.
@@ -92,6 +93,7 @@ Anomalies are detected using `SIT-AW <https:///github.com/convince-project/sit-a
 `Explainable AI planning <https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9635890>`__ is used to generate explanations about our systems, and these explanations will guide the robot to understand what went wrong and which actions need to be applied to reach an anomaly-free state.
 `Failure Mode and Effects Analysis <https://iopscience.iop.org/article/10.1088/1757-899X/337/1/012033/pdf>`__ is used to store the unknown anomalies we have encountered, once we have recovered.
 This is fed into a Bayesian Network to calculate the Conditional Probability Tables using `PyAgrum <https://pypi.org/project/pyAgrum/>`__ to infer which solution SIMULATE-PLAN can use to resolve the anomalies. 
+
 
 scan
 ----
@@ -119,6 +121,7 @@ specific property by SCAN will only depend on the computation time
 allowed, whereas if probabilities are attached to transitions in the
 model, this will also influence the final result emitted by SCAN. 
 
+
 moon
 ----
 `convince-project/moon <https:///github.com/convince-project/moon>`_
@@ -136,6 +139,7 @@ SCAN. MOON will notify violations of properties and models so that
 other tools can be invoked to amend plans or models and adapt the
 control architecture to new and unforeseen situations. 
 
+
 mc-toolchain-jani
 -----------------
 `convince-project/mc-toolchain-jani <https:///github.com/convince-project/mc-toolchain-jani>`_
@@ -144,6 +148,7 @@ This is a toolbox for converting all specifications of components of a robotic s
 
 The toolbox consist of a script to convert models describing the system and its environment together, given in the CONVINCE robotics JANI flavor as specified in the `data model repository <https://github.com/convince-project/data-model>`_, into `plain JANI <https://jani-spec.org>`_ accepted as input by model checkers. 
 The second part of the toolbox centers around system specifications given in (SC)XML and how to convert them into a plain JANI file for model checking. This comprises property specification in temporal logic, currently given in JANI, a behavior tree in XML, ROS nodes and their plugins in SCXML, and an environment specification in SCXML.
+
 
 model2code
 ----------

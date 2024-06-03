@@ -66,12 +66,12 @@ agent coverageplan #PaleGreen [
 WP3 / UoB
 ]
 agent activeplan #PaleGreen [
-[[https://convince-project.github.io/overview/#active-plan-simulate-plan ACTIVE-PLAN]]
+[[https://convince-project.github.io/overview/#active-plan-and-simulate-plan ACTIVE-PLAN]]
 ....
 WP3 / UoB
 ] 
 agent simulateplan #PaleGreen [
-[[https://convince-project.github.io/overview/#active-plan-simulate-plan SIMULATE-PLAN]]
+[[https://convince-project.github.io/overview/#active-plan-and-simulate-plan SIMULATE-PLAN]]
 ....
 WP3 / UoB
 ] 
