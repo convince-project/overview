@@ -120,8 +120,8 @@ moon <-- r : ROS Communication
 stormscan -[hidden]-> mdelib
 stormscan <-- m : "JANI / SCXML\n"
 
-r -> jani : "SCXML"
-jani -> m : "JANI\n"
+r -> jani : "High-level XML\n\n"
+jani -> m : "JANI / SCXML\n"
 rskill <- modeltocode : "CPP"
 modeltocode <- mskill : "SCXML\t\t\t"
 coverageplan -[hidden]> modeltocode
