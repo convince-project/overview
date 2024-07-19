@@ -140,9 +140,9 @@ other tools can be invoked to amend plans or models and adapt the
 control architecture to new and unforeseen situations. 
 
 
-mc-toolchain-jani
+as2fm
 -----------------
-`convince-project/mc-toolchain-jani <https:///github.com/convince-project/mc-toolchain-jani>`_
+`convince-project/as2fm <https:///github.com/convince-project/as2fm>`_
 
 This is a toolbox for converting all specifications of components of a robotic system under investigation into a format which can be given as input to model checkers for verifying the robustness of the system functionalities. The resulting format used for model checking is `JANI <https://jani-spec.org>`_. 
 
