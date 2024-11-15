@@ -5,6 +5,8 @@ on:
     # Triggers the workflow on push or pull request events but only for the "main" branch
     push:
         branches: [ "main" ]
+    pr:
+        branches: [ "main" ]
 
 jobs:
     build:
@@ -35,6 +37,9 @@ jobs:
               with:
                     path: docs/build/html
     deploy:
+        # Only on main branch
+        if: github.ref == 'refs/heads/main'
+
         # Add a dependency to the build job
         needs: build
 
