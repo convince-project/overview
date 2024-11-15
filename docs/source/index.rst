@@ -7,9 +7,11 @@ The goal of the `CONVINCE project <https://convince-project.eu/>`_ is to provide
 
 This is the entry-point for the CONVINCE toolchain documentation. It provides an overview of all the individual components which are part of the large toolchain. Those components can be used standalone and also linked together as required for individual use cases.
 
-.. uml::  overview.plantuml
-   :caption: CONVINCE Toolchain Overview
-   :alt: CONVINCE Toolchain Overview
+.. .. uml::  overview.plantuml
+..    :caption: CONVINCE Toolchain Overview
+..    :alt: CONVINCE Toolchain Overview
+
+.. image:: overview.png
 
 The CONVINCE toolchain works as depicted above. The individual repos and documentations are linked from there.
 
