@@ -33,13 +33,13 @@ sit-l
 -----
 SIT-L is a software module that implements techniques for the acquisition (learning) of new episodic and semantic memory from encountered unexpected situations that were not foreseen at design time (unknown anomalies). It closes the loop of robot situation awareness and increased robot autonomy. SIT-L is under development and will be release at a later stage of CONVINCE.
 
-SIT-L represents the extraction of the new anomaly description, given the preprocessed sensory-data, monitor outputs, ontologies and from the found solution to resolve the anomaly, i.e., the output of `ACTIVE-PLAN/SIMULATE-PLAN <https://convince-project.github.io/overview/#active-plan-simulate-plan>`_. A new pair (anomaly description, mitigation strategy) is then added to the current knowledge base, which implies learning a new situation. Indeed, if the system encounters this situation again, it will be able to identify the anomaly as known and resolve it.
+SIT-L represents the extraction of the new anomaly description, given the preprocessed sensory-data, monitor outputs, ontologies and from the found solution to resolve the anomaly, i.e., the output of `ACTIVE-PLAN/SIMULATE-PLAN <https:///github.com/convince-project/active-simulate-plan>`_. A new pair (anomaly description, mitigation strategy) is then added to the current knowledge base, which implies learning a new situation. Indeed, if the system encounters this situation again, it will be able to identify the anomaly as known and resolve it.
 
 
 coverage-plan
 -------------
 | V1: `convince-project/coverage-plan <https:///github.com/convince-project/coverage-plan>`_
-| V2: `convince-project/congestion-coverage-plan <TBC>`_
+| V2: `convince-project/congestion-coverage-plan <https:///github.com/convince-project/congestion-coverage-plan>`_
 
 .. .. uml::
 
@@ -85,7 +85,7 @@ The MDP is solved using `labeled real-time dynamic programming (LRTDP) <https://
 Before deployment, the user must specify the topological map and the robot's starting position.
 
 
-COVERAGE-PLAN V2 can be found `here <TBC>`__ and its documentation can be found `here <TBC>`__.
+COVERAGE-PLAN V2 can be found `here <https:///github.com/convince-project/congestion-coverage-plan>`__ and its documentation can be found `here <https://convince-project.github.io/congestion-coverage-plan>`__.
 The documentation contains a tutorial showing how to use the tour planner.
 
 
@@ -111,14 +111,20 @@ The documentation contains a number of tutorials demonstrating the current funct
 
 
 active/simulate-plan
------------------------------
-ACTIVE-PLAN and SIMULATE-PLAN are tools used for handling unknown anomalies.
-These tools are currently being developed.
-The input here is an anomalous state where the robot failed to perform an action, and the output is an anomaly-free state where the robot is now able to perform the action.
-Anomalies are detected using `SIT-AW <https:///github.com/convince-project/sit-aw>`__.
-`Explainable AI planning <https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9635890>`__ is used to generate explanations about our systems, and these explanations will guide the robot to understand what went wrong and which actions need to be applied to reach an anomaly-free state.
-`Failure Mode and Effects Analysis <https://iopscience.iop.org/article/10.1088/1757-899X/337/1/012033/pdf>`__ is used to store the unknown anomalies we have encountered, once we have recovered.
-This is fed into a Bayesian Network to calculate the Conditional Probability Tables using `PyAgrum <https://pypi.org/project/pyAgrum/>`__ to infer which solution SIMULATE-PLAN can use to resolve the anomalies. 
+--------------------
+
+`convince-project/active-simulate-plan <https:///github.com/convince-project/active-simulate-plan>`_
+
+ACTIVE/SIMULATE-PLAN is a suite of online tools for handling unknown anomalies.
+
+The input to ACTIVE/SIMULATE-PLAN is the current state information and a list of available actions in JSON format.
+The output is a plan also in JSON format.
+Anomalies are detected using `SIT-AW <https:///github.com/convince-project/sit-aw>`__. 
+The ACTIVE-PLAN component handles anomaly identification by applying `causal interventions <https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9561439>`__ with `Monte Carlo Tree Search (MCTS) <https://ieeexplore.ieee.org/document/6145622>`__ to run “what-if” analyses. 
+The SIMULATE-PLAN component handles anomaly recovery using the information from ACTIVE-PLAN to plan and execute a sequence of actions that returns the system to a valid, goal-achievable state using `Task and Motion Planning (TAMP) <https://www.annualreviews.org/docserver/fulltext/control/4/1/annurev-control-091420-084139.pdf?expires=1761734062&id=id&accname=guest&checksum=59334B4C80F2B31D5A996F5C5E219446>`__.
+
+ACTIVE-PLAN and SIMULATE-PLAN can be found `here <https://github.com/convince-project/active-simulate-plan>`__, and the documentation can be found `here <https://convince-project.github.io/active-simulate-plan/>`__. We provide a tutorial showcasing our framework.
+
 
 
 scan
