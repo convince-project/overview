@@ -11,7 +11,7 @@ This is the entry-point for the CONVINCE toolchain documentation. It provides an
 ..    :caption: CONVINCE Toolchain Overview
 ..    :alt: CONVINCE Toolchain Overview
 
-.. image:: overview.png
+.. image:: overview.drawio.png
 
 The CONVINCE toolchain works as depicted above. The individual repos and documentations are linked from there.
 
@@ -33,12 +33,13 @@ sit-l
 -----
 SIT-L is a software module that implements techniques for the acquisition (learning) of new episodic and semantic memory from encountered unexpected situations that were not foreseen at design time (unknown anomalies). It closes the loop of robot situation awareness and increased robot autonomy. SIT-L is under development and will be release at a later stage of CONVINCE.
 
-SIT-L represents the extraction of the new anomaly description, given the preprocessed sensory-data, monitor outputs, ontologies and from the found solution to resolve the anomaly, i.e., the output of `ACTIVE-PLAN/SIMULATE-PLAN <https://convince-project.github.io/overview/#active-plan-simulate-plan>`_. A new pair (anomaly description, mitigation strategy) is then added to the current knowledge base, which implies learning a new situation. Indeed, if the system encounters this situation again, it will be able to identify the anomaly as known and resolve it.
+SIT-L represents the extraction of the new anomaly description, given the preprocessed sensory-data, monitor outputs, ontologies and from the found solution to resolve the anomaly, i.e., the output of `ACTIVE-PLAN/SIMULATE-PLAN <https:///github.com/convince-project/active-simulate-plan>`_. A new pair (anomaly description, mitigation strategy) is then added to the current knowledge base, which implies learning a new situation. Indeed, if the system encounters this situation again, it will be able to identify the anomaly as known and resolve it.
 
 
 coverage-plan
 -------------
-`convince-project/coverage-plan <https:///github.com/convince-project/coverage-plan>`_
+| V1: `convince-project/coverage-plan <https:///github.com/convince-project/coverage-plan>`_
+| V2: `convince-project/congestion-coverage-plan <https:///github.com/convince-project/congestion-coverage-plan>`_
 
 .. .. uml::
 
@@ -52,49 +53,78 @@ coverage-plan
 
 ..    rskill . coverageplan
 
+The CONVINCE toolbox contains two versions of COVERAGE-PLAN.
 
-COVERAGE-PLAN is an online tool for *lifelong area coverage in dynamic and uncertain environments*.
+COVERAGE-PLAN V1
+++++++++++++++++
 
-The current release of COVERAGE-PLAN operates on discrete grid environments. 
-COVERAGE-PLAN has two components: an online coverage planner, and a learned model of stochastic occupancy dynamics.
+COVERAGE-PLAN V1 is an online tool for *lifelong area coverage in dynamic and uncertain environments*.
+
+COVERAGE-PLAN V1 operates on discrete grid environments. 
+COVERAGE-PLAN V1 has two components: an online coverage planner, and a learned model of stochastic occupancy dynamics.
 The dynamics model `captures the probability that a grid cell becomes occupied or free in the next timestep <https://ieeexplore.ieee.org/abstract/document/6385629>`_.
 This model is learned over the robot's lifespan, where the model is updated after each coverage run using the robot's latest observations.
 The online coverage planner uses the learned model to build and solve a `partially observable Markov decision process (POMDP) <https://www.sciencedirect.com/science/article/pii/S000437029800023X?via%3Dihub>`_ for area coverage.
 The state-of-the-art `DESPOT <https://github.com/AdaCompNUS/despot>`_ algorithm is used to solve POMDPs.
 Before deployment, the user must specify the map dimensions, the robot's starting position, the robot's field of view, and the time bound on coverage.
 
-COVERAGE-PLAN can be found `here <https://github.com/convince-project/coverage-plan>`__ and its documentation can be found `here <https://convince-project.github.io/coverage-plan>`__.
+COVERAGE-PLAN V1 can be found `here <https://github.com/convince-project/coverage-plan>`__ and its documentation can be found `here <https://convince-project.github.io/coverage-plan>`__.
 The documentation contains a tutorial demonstrating the coverage planner.
+
+COVERAGE-PLAN V2
+++++++++++++++++
+
+COVERAGE-PLAN V2 is an online tool for *tour planning in crowded, human-populated environments*.
+
+COVERAGE-PLAN V2 operates over a topological graph.
+COVERAGE-PLAN V2 has two components: an online tour planner, and a learned model of human dynamics.
+The dynamics model, known as a `CLiFF <https://ieeexplore.ieee.org/document/7835155/>`_ map, captures the speed and direction of human motion at different points in the environment.
+This model is learned from human motion data collected on LIDARs placed around the environment.
+The online tour planner uses the CLiFF map to build and solve an `MDP <https://onlinelibrary.wiley.com/doi/book/10.1002/9780470316887>`__.
+The MDP is solved using `labeled real-time dynamic programming (LRTDP) <https://cdn.aaai.org/ICAPS/2003/ICAPS03-002.pdf>`_.
+Before deployment, the user must specify the topological map and the robot's starting position.
+
+
+COVERAGE-PLAN V2 can be found `here <https:///github.com/convince-project/congestion-coverage-plan>`__ and its documentation can be found `here <https://convince-project.github.io/congestion-coverage-plan>`__.
+The documentation contains a tutorial showing how to use the tour planner.
 
 
 refine-plan
 -----------
 `convince-project/refine-plan <https:///github.com/convince-project/refine-plan>`_
 
-REFINE-PLAN is an offline tool for *refining hand-designed behaviour trees (BTs)* to attain robustness under uncertainty, improving performance.
+REFINE-PLAN is an offline tool for *refining hand-designed behaviour trees (BTs)* to admit geometric reasoning and attain robustness under uncertainty, improving performance.
 
 
-Behaviour trees are input/output in the XML format defined in `BehaviorTree.cpp v3.8 <https://www.behaviortree.dev>`_.
-REFINE-PLAN extracts a state space from the hand-designed BT, and learns probabilistic `options <https://www.sciencedirect.com/science/article/pii/S0004370299000521>`_ in simulation which describe the execution of each action node.
-This simulation is provided by the user.
-State space extraction and option learning are not implemented in the current release.
-Given the option set and extracted state space, REFINE-PLAN constructs a `semi-MDP <https://www.sciencedirect.com/science/article/pii/S0004370299000521>`_ and solves it using `Storm/Stormpy <https://moves-rwth.github.io/stormpy/>`_ to synthesise a policy.
-This policy is then converted back to a BT using `existing methods <https://ieeexplore.ieee.org/document/10105979>`_.
+The input to REFINE-PLAN is a hand-designed BT.
+REFINE-PLAN extracts a state space from the hand-designed BT, and learns the probabilistic dynamics of BT action nodes under different parameters.
+These parameters describe the motion-level behaviour of action nodes.
+To support model learning, we use an information-theoretic approach to efficiently collect data in simulation.
+The simulation is provided by the user.
+State space extraction is not implemented in the current release.
+Given the extracted state space and a set of `Bayesian networks <http://mcb111.org/w06/KollerFriedman.pdf>`_ that describe robot dynamics, REFINE-PLAN constructs an `MDP <https://onlinelibrary.wiley.com/doi/book/10.1002/9780470316887>`__ and solves it using `Storm/Stormpy <https://moves-rwth.github.io/stormpy/>`_ to synthesise a policy.
+This policy can then be converted back to a BT using `existing methods <https://ieeexplore.ieee.org/document/10105979>`_.
 
 
 REFINE-PLAN can be found `here <https://github.com/convince-project/refine-plan>`__ and its documentation can be found `here <https://convince-project.github.io/refine-plan>`__.
-The documentation contains a tutorial demonstrating the current functionality.
+The documentation contains a number of tutorials demonstrating the current functionality.
 
 
-active-plan and simulate-plan
------------------------------
-ACTIVE-PLAN and SIMULATE-PLAN are tools used for handling unknown anomalies.
-These tools are currently being developed.
-The input here is an anomalous state where the robot failed to perform an action, and the output is an anomaly-free state where the robot is now able to perform the action.
-Anomalies are detected using `SIT-AW <https:///github.com/convince-project/sit-aw>`__.
-`Explainable AI planning <https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9635890>`__ is used to generate explanations about our systems, and these explanations will guide the robot to understand what went wrong and which actions need to be applied to reach an anomaly-free state.
-`Failure Mode and Effects Analysis <https://iopscience.iop.org/article/10.1088/1757-899X/337/1/012033/pdf>`__ is used to store the unknown anomalies we have encountered, once we have recovered.
-This is fed into a Bayesian Network to calculate the Conditional Probability Tables using `PyAgrum <https://pypi.org/project/pyAgrum/>`__ to infer which solution SIMULATE-PLAN can use to resolve the anomalies. 
+active/simulate-plan
+--------------------
+
+`convince-project/active-simulate-plan <https:///github.com/convince-project/active-simulate-plan>`_
+
+ACTIVE/SIMULATE-PLAN is a suite of online tools for handling unknown anomalies.
+
+The input to ACTIVE/SIMULATE-PLAN is the current state information and a list of available actions in JSON format.
+The output is a plan also in JSON format.
+Anomalies are detected using `SIT-AW <https:///github.com/convince-project/sit-aw>`__. 
+The ACTIVE-PLAN component handles anomaly identification by applying `causal interventions <https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9561439>`__ with `Monte Carlo Tree Search (MCTS) <https://ieeexplore.ieee.org/document/6145622>`__ to run “what-if” analyses. 
+The SIMULATE-PLAN component handles anomaly recovery using the information from ACTIVE-PLAN to plan and execute a sequence of actions that returns the system to a valid, goal-achievable state using `Task and Motion Planning (TAMP) <https://www.annualreviews.org/docserver/fulltext/control/4/1/annurev-control-091420-084139.pdf?expires=1761734062&id=id&accname=guest&checksum=59334B4C80F2B31D5A996F5C5E219446>`__.
+
+ACTIVE-PLAN and SIMULATE-PLAN can be found `here <https://github.com/convince-project/active-simulate-plan>`__, and the documentation can be found `here <https://convince-project.github.io/active-simulate-plan/>`__. We provide a tutorial showcasing our framework.
+
 
 
 scan
