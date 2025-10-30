@@ -11,7 +11,7 @@ This is the entry-point for the CONVINCE toolchain documentation. It provides an
 ..    :caption: CONVINCE Toolchain Overview
 ..    :alt: CONVINCE Toolchain Overview
 
-.. image:: overview.png
+.. image:: overview.drawio.png
 
 The CONVINCE toolchain works as depicted above. The individual repos and documentations are linked from there.
 
