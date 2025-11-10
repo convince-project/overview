@@ -31,9 +31,14 @@ For a list of available software modules in the current release of the SIT-AW pi
 
 sit-l
 -----
-SIT-L is a software module that implements techniques for the acquisition (learning) of new episodic and semantic memory from encountered unexpected situations that were not foreseen at design time (unknown anomalies). It closes the loop of robot situation awareness and increased robot autonomy. SIT-L is under development and will be release at a later stage of CONVINCE.
+`convince-project/sit-l <https:///github.com/convince-project/sit-l>`_
 
-SIT-L represents the extraction of the new anomaly description, given the preprocessed sensory-data, monitor outputs, ontologies and from the found solution to resolve the anomaly, i.e., the output of `ACTIVE-PLAN/SIMULATE-PLAN <https:///github.com/convince-project/active-simulate-plan>`_. A new pair (anomaly description, mitigation strategy) is then added to the current knowledge base, which implies learning a new situation. Indeed, if the system encounters this situation again, it will be able to identify the anomaly as known and resolve it.
+SIT-L is a software module that implements techniques for the acquisition (learning) of new episodic and semantic memory from encountered unexpected situations that were not foreseen at design time (unknown anomalies).
+It closes the loop of robot situation awareness and increased robot autonomy.
+
+SIT-L represents the extraction of the new anomaly description, given the preprocessed sensory-data, monitor outputs, ontologies and from the found solution to resolve the anomaly, i.e., the output of `ACTIVE-PLAN/SIMULATE-PLAN <https:///github.com/convince-project/active-simulate-plan>`_.
+A new pair (anomaly description, mitigation strategy) is then added to the current knowledge base, which implies learning a new situation.
+Indeed, if the system encounters this situation again, it will be able to identify the anomaly as known and resolve it.
 
 
 coverage-plan
