@@ -47,6 +47,6 @@ RUN git clone -b 4.3.3 https://github.com/sea-bass/pyrobosim.git src/pyrobosim
 
 # Set up the entrypoint.
 CMD /bin/bash
-COPY .docker/entrypoint.sh /entrypoint.sh
+COPY tutorials/.docker/entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
 RUN echo "source /entrypoint.sh && print_ros_variables" >> ~/.bashrc
