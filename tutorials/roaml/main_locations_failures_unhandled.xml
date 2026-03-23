@@ -1,0 +1,27 @@
+<roaml>
+    <parameters>
+        <max_time value="100" unit="s" />
+        <max_array_size value="10" />
+    </parameters>
+
+    <data_declarations>
+        <input type="xml" src="./data_types/data_types.xml" />
+    </data_declarations>
+
+    <behavior_tree>
+        <input type="bt.cpp-xml" src="./policy/bt_tree_locations.xml" />
+        <input type="bt-plugin-ascxml" src="./bt_plugins/bt_navigate_to_location.ascxml" />
+        <input type="bt-plugin-ascxml" src="./bt_plugins/bt_detect_object.ascxml" />
+        <input type="bt-plugin-ascxml" src="./bt_plugins/bt_pick_object.ascxml" />
+        <input type="bt-plugin-ascxml" src="./bt_plugins/bt_place_object.ascxml" />
+        <input type="bt-plugin-ascxml" src="./bt_plugins/get_next_location.ascxml" />
+    </behavior_tree>
+
+    <node_models>
+        <input type="node-ascxml" src="./environment/world_multiple_locations_w_failures.ascxml" />
+    </node_models>
+
+    <properties>
+        <input type="jani" src="./properties/properties.jani" />
+    </properties>
+</roaml>
