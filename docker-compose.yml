@@ -17,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: tutorials/.docker/Dockerfile
-      target: convince-tutorials
+      target: tutorials
     # Ensures signals are actually passed and reaped in the container for shutdowns.
     # https://docs.docker.com/compose/compose-file/compose-file-v3/#init
     init: true
