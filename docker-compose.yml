@@ -1,0 +1,51 @@
+# Docker Compose file for CONVINCE tutorials
+#
+# Usage:
+#
+# To build the images:
+#   docker compose build
+#
+# To run a specific service by name:
+#   docker compose run <service_name>
+#
+# To open an interactive shell to a running container:
+#   docker exec -it <container_name> bash
+
+services:
+  base:
+    image: ghcr.io/convince-project/tutorials:latest
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+      target: convince-tutorials
+    # Ensures signals are actually passed and reaped in the container for shutdowns.
+    # https://docs.docker.com/compose/compose-file/compose-file-v3/#init
+    init: true
+    # Interactive shell
+    stdin_open: true
+    tty: true
+    # Networking and IPC for ROS 2
+    network_mode: host
+    ipc: host
+    # Needed to run Groot inside the container
+    privileged: true
+    environment:
+      # Ensure your ROS 2 system is only visible on the local network
+      - ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
+      # If you disable ROS_LOCALHOST_ONLY above, ensure you use a unique domain ID on your network
+      - ROS_DOMAIN_ID=0
+      # Allows graphical programs in the container
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      # Enables FlexBE web UI to work as root inside the container
+      - QTWEBENGINE_DISABLE_SANDBOX=1
+    volumes:
+      # Mount the workshop source code
+      - ./:/convince_ws/src/:rw
+      # Mount the colcon build artifacts
+      - .colcon/build/:/convince_ws/build/:rw
+      - .colcon/install/:/convince_ws/install/:rw
+      - .colcon/log/:/convince_ws/log/:rw
+      # Allows graphical programs in the container
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority
