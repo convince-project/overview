@@ -13,8 +13,9 @@ To run the simulation for the tutorials, execute in the root of the repository:
    docker compose run base ros2 run tutorial_sim run 
 
 You should see a GUI something like this:
-.. image:: ../assets/pyrobosim.png
-   :align: center
-   :alt: PyRoboSim GUI
+
+.. image:: assets/pyrobosim.png
+  :align: center
+  :alt: PyRoboSim GUI
 
 ...
