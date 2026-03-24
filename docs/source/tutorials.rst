@@ -1,6 +1,19 @@
 Tutorials
 =========
 
-Please see the individual documentation pages of the toolchain components linked from the main page of this overview documentation for tutorials on how to use them. 
+These tutorials are designed to give you a introduction to the tools that the CONVINCE toolbox provides by walking you through using them on a simple example.
+The example that all the tutorials are based on is a fetch and carry task, where a mobile robot moves in a household environment, picks up an object, and delivers it to a target location.
 
-An overall tutorial on how to run the full toolchain on a coherent system and how to link the individual toolchain components together will be added soon. 
+To run the simulation for the tutorials, execute in the root of the repository:
+
+.. code-block:: bash
+
+   docker compose up -d
+   docker compose run base ros2 run tutorial_sim run 
+
+You should see a GUI something like this:
+.. image:: ../assets/pyrobosim.png
+   :align: center
+   :alt: PyRoboSim GUI
+
+...
