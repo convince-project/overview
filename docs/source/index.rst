@@ -1,21 +1,21 @@
-CONVINCE Toolchain Overview
+CONVINCE Toolbox Overview
 ===========================
 
 
-Welcome to the CONVINCE toolchain documentation. 
-The goal of the `CONVINCE project <https://convince-project.eu/>`_ is to provide an open source toolchain to improve robust robot deliberation with the help of planning, learning, and model checking techniques. 
+Welcome to the CONVINCE toolbox documentation. 
+The goal of the `CONVINCE project <https://convince-project.eu/>`_ is to provide an open source toolbox to improve robust robot deliberation with the help of planning, learning, and model checking techniques. 
 
-This is the entry-point for the CONVINCE toolchain documentation. It provides an overview of all the individual components which are part of the large toolchain. Those components can be used standalone and also linked together as required for individual use cases.
+This is the entry-point for the CONVINCE toolbox documentation. It provides an overview of all the individual components which are part of the large toolbox. Those components can be used standalone and also linked together as required for individual use cases.
 
 .. .. uml::  overview.plantuml
-..    :caption: CONVINCE Toolchain Overview
-..    :alt: CONVINCE Toolchain Overview
+..    :caption: CONVINCE Toolbox Overview
+..    :alt: CONVINCE Toolbox Overview
 
 .. image:: overview.drawio.png
 
-The CONVINCE toolchain works as depicted above. The individual repos and documentations are linked from there.
+The CONVINCE toolbox works as depicted above. The individual repos and documentations are linked from there.
 
-In the following the CONVINCE toolchain components are briefly described. For more details please check out the individual repositories with their documentation and tutorial pages.
+In the following the CONVINCE toolbox components are briefly described. For more details please check out the individual repositories with their documentation and tutorial pages.
 
 
 sit-aw
