@@ -1,0 +1,13 @@
+adjustText
+astar
+matplotlib
+numpy<2.1.0
+pycollada
+PySide6>=6.7.1
+pytest-dependency
+PyYAML
+scipy
+shapely>=2.0.1
+transforms3d
+trimesh
+typing-extensions

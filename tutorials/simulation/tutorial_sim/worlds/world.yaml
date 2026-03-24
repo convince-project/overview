@@ -1,0 +1,151 @@
+# Problem 4 World
+# Adds battery usage to actions.
+
+metadata:
+   locations: $PWD/location_data.yaml
+   objects: $PWD/object_data.yaml
+
+params:
+  name: convince_world
+  inflation_radius: 0.01
+  object_radius: 0.01
+
+robots:
+  - name: robot
+    radius: 0.1
+    color: "#000"
+    location: hall
+    partial_obs_objects: false
+    path_executor:
+      type: constant_velocity
+    path_planner:
+      type: rrt
+      bidirectional: false
+      max_connection_dist: 0.5
+      max_time: 10.0
+    action_execution_options:
+      navigate:
+        success_probability: 0.9
+        rng_seed: 42
+        # battery_usage: 0.5  # Per meter traveled
+      pick:
+        success_probability: 0.7
+        # battery_usage: 5
+      place:
+        success_probability: 0.7
+        # battery_usage: 5
+      open:
+        success_probability: 0.9
+        # battery_usage: 8
+      close:
+        success_probability: 0.6
+        # battery_usage: 8
+      detect:
+        success_probability: 0.8
+        # battery_usage: 0
+
+rooms:
+  - name: dining
+    footprint:
+      type: polygon
+      coords:
+        - [-5, 5]
+        - [-5, 2]
+        - [-2, 2]
+        - [-2, 5]
+    wall_width: 0.3
+    color: "#FA9F00"
+
+  - name: kitchen
+    footprint:
+      type: polygon
+      coords:
+        - [-5, -5]
+        - [-5, -2]
+        - [-2, -2]
+        - [-2, -5]
+    wall_width: 0.3
+    color: "#009A95"
+
+  - name: hall
+    footprint:
+      type: polygon
+      coords:
+        - [5, -5]
+        - [5, -2]
+        - [2, -2]
+        - [2, -5]
+    wall_width: 0.3
+    color: "#F70063"
+
+hallways:
+  - room_start: dining
+    room_end: kitchen
+    width: 0.8
+    wall_width: 0.05
+    color: "#CCC"
+    conn_method: angle
+    conn_angle: -1.57
+    offset: 0
+    is_open: true
+    is_locked: false
+
+  - room_start: kitchen
+    room_end: hall
+    width: 0.8
+    wall_width: 0.05
+    color: "#CCC"
+    conn_method: angle
+    conn_angle: 0
+    offset: 0
+    is_open: faltruese
+    is_locked: false
+
+  - room_start: dining
+    room_end: hall
+    width: 0.8
+    wall_width: 0.05
+    color: "#CCC"
+    conn_method: angle
+    conn_angle: -0.77
+    offset: .9
+    is_open: true
+    is_locked: false
+
+locations:
+    - name: dining_table
+      parent: dining
+      category: table
+      pose:
+        position:
+          x: -2.75
+          y: 4.5
+    - name: side_table
+      parent: dining
+      category: table
+      pose:
+        position:
+          x: -4.25
+          y: 4.5
+    - name: kitchen_table
+      parent: kitchen
+      category: table
+      pose:
+        position:
+          x: -4.25
+          y: -4.5
+    - name: fridge
+      parent: kitchen
+      category: storage
+      pose:
+        position:
+          x: -2.75
+          y: -4.5
+
+objects:
+  - parent: kitchen_table
+    category: soda
+  - parent: table
+    category: snacks
+  - parent: fridge
+    category: butter

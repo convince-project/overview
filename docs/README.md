@@ -12,7 +12,7 @@ sudo mv plantuml-bsd-1.2024.4.jar /usr/share/plantuml/plantuml.jar
 Then the following command needs to be run to build the documentation:
 
 ```bash
-cd <path-to-convince_toolchain>/docs
+cd <path-to-convince_toolbox>/docs
 pip install -r requirements.txt
 make html
 ```
