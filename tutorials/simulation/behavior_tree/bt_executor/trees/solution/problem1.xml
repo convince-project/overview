@@ -1,0 +1,18 @@
+<root BTCPP_format="4">
+
+  <BehaviorTree ID="MainTree">
+    <Sequence>
+        <Navigate name="ToPantry" target="pantry"/>
+        <IfThenElse>
+            <DetectObject name="DetectSnack" object="snacks0"/>
+            <Sequence name="DetectedTrue">
+                <PickObject name="PickSnack" object="snacks0"/>
+                <Navigate name="ToTableWithSnack" target="table"/>
+                <PlaceObject name="PlaceSnack" object="snacks0"/>
+            </Sequence>
+            <Navigate name="ToTableWithoutSnack" target="table"/>
+        </IfThenElse>
+    </Sequence>
+  </BehaviorTree>
+
+</root>

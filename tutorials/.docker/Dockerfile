@@ -1,17 +1,22 @@
 FROM ros:jazzy-ros-base
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+USER root
+
+
 # Install apt dependencies.
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
     apt-utils curl fuse3 libfuse2 gdb nano \
+    terminator dbus-x11 \
     libegl1 libgl1-mesa-dev libglu1-mesa-dev '^libxcb.*-dev' libx11-xcb-dev \
     libxi-dev libxkbcommon-dev libxkbcommon-x11-dev libxrender-dev \
     libnss3 libasound2t64 libxkbfile1 \
     python3-pip python3-tk python3-wrapt python3-inflection \
-    ros-jazzy-example-interfaces ros-jazzy-rqt-service-caller
+    ros-jazzy-example-interfaces ros-jazzy-rqt-service-caller \
+    libczmq-dev ros-jazzy-zmqpp-vendor-dbgsym ros-jazzy-zmqpp-vendor libczmq-dev libczmq4 curl qt6-scxml*
 
 # Create a ROS 2 workspace.
 RUN mkdir -p /convince_ws/src/
@@ -21,11 +26,15 @@ WORKDIR /convince_ws
 # (pip)
 COPY tutorials/requirements.txt /convince_ws
 RUN pip3 install --break-system-packages -r requirements.txt
-# COPY dependencies src/dependencies
-# RUN source /opt/ros/jazzy/setup.bash && \
-#     rosdep install --from-paths src -y --ignore-src
+
 # (pyrobosim)
 RUN git clone -b 4.3.4 https://github.com/sea-bass/pyrobosim.git src/pyrobosim
+
+# (bt_executor)
+# `behaviortree_ros2` from source since it is not released for Jazzy
+RUN git clone --depth 1 https://github.com/BehaviorTree/BehaviorTree.ROS2.git src/behaviortree_ros2
+RUN source /opt/ros/jazzy/setup.bash && \
+    rosdep install --from-paths src -y --ignore-src
 
 # # (smc_storm)
 # RUN curl -O -L https://github.com/convince-project/smc_storm/releases/download/0.0.6/smc_storm_executable.tar.gz && \
