@@ -26,8 +26,6 @@ services:
     # Networking and IPC for ROS 2
     network_mode: host
     ipc: host
-    # Needed to run Groot inside the container
-    privileged: true
     environment:
       # Ensure your ROS 2 system is only visible on the local network
       - ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
@@ -39,8 +37,8 @@ services:
       # Enables FlexBE web UI to work as root inside the container
       - QTWEBENGINE_DISABLE_SANDBOX=1
     volumes:
-      # Mount the workshop source code
-      - ./:/convince_ws/src/:rw
+      # Mount the tutorials code
+      - ./tutorials/:/convince_ws/src/tutorials/:rw
       # Mount the colcon build artifacts
       - .colcon/build/:/convince_ws/build/:rw
       - .colcon/install/:/convince_ws/install/:rw
