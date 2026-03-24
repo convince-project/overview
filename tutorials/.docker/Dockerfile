@@ -19,13 +19,13 @@ WORKDIR /convince_ws
 
 # Install external dependencies.
 # (pip)
-COPY requirements.txt /convince_ws
+COPY tutorials/requirements.txt /convince_ws
 RUN pip3 install --break-system-packages -r requirements.txt
 # COPY dependencies src/dependencies
 # RUN source /opt/ros/jazzy/setup.bash && \
 #     rosdep install --from-paths src -y --ignore-src
 # (pyrobosim)
-RUN git clone -b 4.3.3 https://github.com/sea-bass/pyrobosim.git src/pyrobosim
+RUN git clone -b 4.3.4 https://github.com/sea-bass/pyrobosim.git src/pyrobosim
 
 # # (smc_storm)
 # RUN curl -O -L https://github.com/convince-project/smc_storm/releases/download/0.0.6/smc_storm_executable.tar.gz && \
