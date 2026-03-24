@@ -1,0 +1,159 @@
+/******************************************************************************
+ *                                                                            *
+ * Copyright (C) 2020 Fondazione Istituto Italiano di Tecnologia (IIT)        *
+ * All Rights Reserved.                                                       *
+ *                                                                            *
+ ******************************************************************************/
+/**
+ * @file ROS2Action.cpp
+ * @authors: Stefano Bernagozzi <stefano.bernagozzi@iit.it>
+ */
+
+#include <chrono>         // std::chrono::seconds
+
+#include <ROS2Action.h>
+#define VERBOSE_LOGGING
+ROS2Action::ROS2Action(const std::string& name, const BT::NodeConfig& config) :
+        ActionNodeBase(name, config)
+{
+
+    BT::Expected<std::string> is_monitored = BT::TreeNode::getInput<std::string>("isMonitored");
+    if (is_monitored && is_monitored.value() == "true")
+    {
+        m_suffixMonitor = "_mon";
+    }
+    BT::Expected<std::string> interface = BT::TreeNode::getInput<std::string>("interface");
+    bool ok = init();
+
+    if(!ok)
+    {
+       RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Something went wrong in the node init() of %s", ActionNodeBase::name().c_str());
+    }
+}
+
+
+int ROS2Action::sendTickToSkill() 
+{
+    auto msg = bt_interfaces_dummy::msg::ActionResponse();
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "sending tick to  %s ", ActionNodeBase::name().c_str());
+    auto request = std::make_shared<bt_interfaces_dummy::srv::TickAction::Request>();
+    while (!m_clientTick->wait_for_service(std::chrono::seconds(1))) {
+        if (!rclcpp::ok()) {
+        RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Interrupted while waiting for the service TickAction. Exiting.");
+        return msg.SKILL_FAILURE;
+        }
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "service TickAction in %s not available, waiting again...", ActionNodeBase::name().c_str());
+    }
+    auto result = m_clientTick->async_send_request(request);
+    std::this_thread::sleep_for (std::chrono::milliseconds(100));
+    if (rclcpp::spin_until_future_complete(m_node, result) ==
+        rclcpp::FutureReturnCode::SUCCESS) {
+        return result.get()->status;
+    }
+    return msg.SKILL_FAILURE;
+}
+
+
+BT::NodeStatus ROS2Action::tick()
+{
+    std::lock_guard<std::mutex> lock(m_requestMutex);
+    auto message = bt_interfaces_dummy::msg::ActionResponse();
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Node %s sending tick to skill", ActionNodeBase::name().c_str());
+    auto time_start = std::chrono::high_resolution_clock::now();
+    auto status = sendTickToSkill();
+    auto time_end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(time_end - time_start);
+    #ifdef VERBOSE_LOGGING
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Node %s tick to skill took %ld microseconds", ActionNodeBase::name().c_str(), duration.count());
+    m_tick_count++;
+    if (m_tick_count > 4)
+    {
+        m_average_time = (duration.count() + (m_tick_count - 1-4) * m_average_time) / (m_tick_count-4);
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Node %s average tick time %f, number of ticks %d", ActionNodeBase::name().c_str(), m_average_time, m_tick_count);
+    }
+    #endif
+
+    switch (status) {
+        case message.SKILL_RUNNING:
+            return BT::NodeStatus::RUNNING;
+        case message.SKILL_SUCCESS:
+            return BT::NodeStatus::SUCCESS;
+        case message.SKILL_FAILURE:
+            return BT::NodeStatus::FAILURE;
+        default:
+            break;
+    }
+    return BT::NodeStatus::FAILURE;
+}
+
+
+
+BT::PortsList ROS2Action::providedPorts()
+{
+    return { BT::InputPort<std::string>("interface"),
+             BT::InputPort<std::string>("isMonitored"),
+             BT::InputPort<std::string>("service_name_tick"),
+             BT::InputPort<std::string>("service_name_halt") };
+}
+
+void ROS2Action::halt()
+{        
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Node %s sending halt to skill@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@", ActionNodeBase::name().c_str());
+
+    bool success = false;
+    do {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Node %s sending halt to skill", ActionNodeBase::name().c_str());
+        auto request = std::make_shared<bt_interfaces_dummy::srv::HaltAction::Request>();
+        while (!m_clientHalt->wait_for_service(std::chrono::seconds(1))) {
+            if (!rclcpp::ok()) {
+            RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Interrupted while waiting for the service TickAction. Exiting.");
+            }
+            RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "%s service TickAction not available, waiting again...", ActionNodeBase::name().c_str());
+        }
+        auto result = m_clientHalt->async_send_request(request);
+        // std::this_thread::sleep_for (std::chrono::milliseconds(100));
+        if (rclcpp::spin_until_future_complete(m_node, result) ==
+            rclcpp::FutureReturnCode::SUCCESS) {
+            success = true;
+        }
+    } while (!success);
+}
+
+
+
+bool ROS2Action::init()
+{
+
+    if(!rclcpp::ok())
+    {
+        rclcpp::init(/*argc*/ 0, /*argv*/ nullptr);
+    }
+
+    m_node = rclcpp::Node::make_shared(ActionNodeBase::name()+ "ActionLeaf");
+
+    std::string tick_service = ActionNodeBase::name() + "Skill/tick" + m_suffixMonitor;
+    std::string halt_service = ActionNodeBase::name() + "Skill/halt" + m_suffixMonitor;
+
+    if (auto tick_input = BT::TreeNode::getInput<std::string>("service_name_tick"))
+    {
+        tick_service = tick_input.value();
+    }
+    if (auto halt_input = BT::TreeNode::getInput<std::string>("service_name_halt"))
+    {
+        halt_service = halt_input.value();
+    }
+
+    m_clientTick = m_node->create_client<bt_interfaces_dummy::srv::TickAction>(tick_service);
+    m_clientHalt = m_node->create_client<bt_interfaces_dummy::srv::HaltAction>(halt_service);
+    RCLCPP_INFO_STREAM(rclcpp::get_logger("rclcpp"),"name -- " << ActionNodeBase::name() << " -- suffixmonitor " << m_suffixMonitor);
+    
+    return true;
+
+}
+
+
+bool ROS2Action::stop()
+{
+    rclcpp::shutdown();
+    return 0;
+}
