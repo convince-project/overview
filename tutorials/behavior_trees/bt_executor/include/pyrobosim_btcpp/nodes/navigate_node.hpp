@@ -17,16 +17,16 @@ public:
   // specify the ports offered by this node
   static BT::PortsList providedPorts()
   {
-    return ExecuteTaskNode::appendProvidedPorts({ BT::InputPort<std::string>("target") });
+    return ExecuteTaskNode::appendProvidedPorts({ BT::InputPort<std::string>("location") });
   }
 
   // Implement the method that sends the goal
   bool setGoal(TaskAction& action) override
   {
     std::string location;
-    if(!getInput("target", location) || location.empty())
+    if(!getInput("location", location) || location.empty())
     {
-      throw BT::RuntimeError("missing required input [target]");
+      throw BT::RuntimeError("missing required input [location]");
     }
     // prepare the goal message
     action.type = "navigate";
