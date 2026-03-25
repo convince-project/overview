@@ -48,14 +48,15 @@ RUN source /opt/ros/jazzy/setup.bash && \
 #     pip3 install --break-system-packages git+https://github.com/felixonmars/Js2Py.git@py3.12  # Temporary fix for js2py && \
 #     pip3 uninstall -y --break-system-packages matplotlib  # Temporary fix for MatPlotLib conflict
 
-# # Remove MatPlotLib display warnings.
-# RUN mkdir /tmp/runtime-root
-# ENV XDG_RUNTIME_DIR "/tmp/runtime-root"
-# RUN chmod -R 0700 /tmp/runtime-root
-# ENV NO_AT_BRIDGE 1
+# (ros)
+COPY tutorials/ /convince_ws/src
+RUN rosdep update && \
+    rosdep install --from-paths src -y --ignore-src
+RUN source /opt/ros/jazzy/setup.bash && \
+    colcon build --symlink-install && \
+    source install/setup.bash
 
 # Set up the entrypoint.
-CMD /bin/bash
 COPY tutorials/.docker/entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
 RUN echo "source /entrypoint.sh && print_ros_variables" >> ~/.bashrc
