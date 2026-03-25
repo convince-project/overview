@@ -17,16 +17,16 @@ public:
   // specify the ports offered by this node
   static BT::PortsList providedPorts()
   {
-    return ExecuteTaskNode::appendProvidedPorts({ BT::InputPort<std::string>("object") });
+    return ExecuteTaskNode::appendProvidedPorts({ BT::InputPort<std::string>("object_id") });
   }
 
   // Implement the method that sends the goal
   bool setGoal(TaskAction& action) override
   {
     std::string object;
-    if(!getInput("object", object) || object.empty())
+    if(!getInput("object_id", object) || object.empty())
     {
-      throw BT::RuntimeError("missing required input [object]");
+      throw BT::RuntimeError("missing required input [object_id]");
     }
     // prepare the goal message
     action.type = "detect";
