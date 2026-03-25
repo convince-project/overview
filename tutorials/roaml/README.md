@@ -52,6 +52,36 @@ as2fm_roaml_to_jani main.xml --scxml-out-dir scxml
 ```
 This commands generates a folder with several SCXML files, that can be loaded and executed by SCAN for property verification.
 
+#### Quick run guide (tested commands)
+
+To avoid environment/path issues, use the commands below exactly as shown.
+
+From the repository root:
+
+```bash
+cd examples/overarching_tutorial/roaml
+source ../ros_interfaces/install/setup.bash
+```
+
+Generate SCXML models for SCAN:
+
+```bash
+as2fm_roaml_to_jani main.xml --scxml-out-dir new_folder
+```
+
+Generate JANI model for SMC Storm:
+
+```bash
+as2fm_roaml_to_jani main.xml --jani-out-file main.jani
+```
+
+You can replace `main.xml` with any other entry model in this folder, for example:
+
+```bash
+as2fm_roaml_to_jani main_locations.xml --scxml-out-dir scxml_main_locations
+as2fm_roaml_to_jani main_locations_w_failures.xml --jani-out-file main_locations_w_failures.jani
+```
+
 ### Verify the JANI model using SMC_STORM
 
 Once we have a JANI model of the system, we can use SMC Storm to verify properties on it.

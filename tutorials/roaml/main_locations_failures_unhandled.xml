@@ -15,13 +15,16 @@
         <input type="bt-plugin-ascxml" src="./bt_plugins/bt_pick_object.ascxml" />
         <input type="bt-plugin-ascxml" src="./bt_plugins/bt_place_object.ascxml" />
         <input type="bt-plugin-ascxml" src="./bt_plugins/get_next_location.ascxml" />
+        <input type="bt-plugin-ascxml" src="./bt_plugins/bt_ros2_action.ascxml" />
     </behavior_tree>
 
     <node_models>
         <input type="node-ascxml" src="./environment/world_multiple_locations_w_failures.ascxml" />
+        <input type="node-ascxml" src="./skills/PlaceObjectSkill.ascxml" />
     </node_models>
 
     <properties>
         <input type="jani" src="./properties/properties.jani" />
+        <input type="xml" src="./properties/properties.xml" />
     </properties>
 </roaml>
