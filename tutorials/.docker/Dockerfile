@@ -49,7 +49,7 @@ RUN source /opt/ros/jazzy/setup.bash && \
 #     pip3 uninstall -y --break-system-packages matplotlib  # Temporary fix for MatPlotLib conflict
 
 # (ros)
-COPY tutorials/ /convince_ws/src
+COPY tutorials/ /convince_ws/src/tutorials/
 RUN rosdep update && \
     rosdep install --from-paths src -y --ignore-src
 RUN source /opt/ros/jazzy/setup.bash && \

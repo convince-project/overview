@@ -14,13 +14,14 @@ public:
     const std::string & name, const NodeConfig & conf,
     const RosNodeParams & params)
   : RosActionNode<pyrobosim_msgs::action::DetectObjects>(name, conf, params)
-  {}
+  {
+    // setActionName("robot/detect_objects");
+  }
 
   // specify the ports offered by this node
   static BT::PortsList providedPorts()
   {
-    return ExecuteTaskNode::appendProvidedPorts({BT::OutputPort<std::string>(
-                 "object_id")});
+    return providedBasicPorts({BT::OutputPort<std::string>("object_id")});
   }
 
   // Implement the method that sends the goal
@@ -36,6 +37,7 @@ public:
       setOutput("object_id", w_result.result->detected_objects[0].name);
       return BT::NodeStatus::SUCCESS;
     } else {
+      RCLCPP_WARN(logger(), "Action failed with code: %d", w_result.code);
       return BT::NodeStatus::FAILURE;
     }
   }

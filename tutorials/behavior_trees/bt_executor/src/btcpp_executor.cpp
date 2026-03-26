@@ -87,12 +87,17 @@ int main(int argc, char** argv)
   params.default_port_value = "execute_action";
   params.wait_for_server_timeout = std::chrono::seconds(5);
 
+  BT::RosNodeParams detect_object_params;
+  detect_object_params.nh = nh;
+  detect_object_params.default_port_value = "robot/detect_objects";
+  detect_object_params.wait_for_server_timeout = std::chrono::seconds(5);
+
   factory.registerNodeType<BT::IsBatteryLow>("IsBatteryLow", nh->get_logger());
   factory.registerNodeType<BT::IsBatteryFull>("IsBatteryFull", nh->get_logger());
   factory.registerNodeType<BT::GetCurrentLocation>("GetCurrentLocation", nh->get_logger());
   factory.registerNodeType<BT::DecoratorGetNextLocation>("GetNextLocation", nh->get_logger());
   factory.registerNodeType<BT::CloseAction>("Close", params);
-  factory.registerNodeType<BT::DetectObject>("DetectObject", params);
+  factory.registerNodeType<BT::DetectObject>("DetectObject", detect_object_params);
   // Keep legacy "Navigate" and add RoAML-aligned "NavigateToLocation".
   factory.registerNodeType<BT::NavigateAction>("Navigate", params);
   factory.registerNodeType<BT::NavigateAction>("NavigateToLocation", params);

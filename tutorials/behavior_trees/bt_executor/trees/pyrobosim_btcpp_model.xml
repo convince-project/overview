@@ -7,8 +7,8 @@
         </Action>
         <Action ID="DetectObject">
             <input_port name="robotID" type="std::string" default="robot">Robot name</input_port>
-            <input_port name="object" type="std::string"/>
-            <input_port name="action_name" type="std::string" default="execute_action">Action server name</input_port>
+            <input_port name="action_name" type="std::string" default="robot/detect_objects"/>
+            <output_port name="object_id" type="std::string"/>
         </Action>
         <Action ID="GetCurrentLocation">
             <output_port name="location" type="std::string">The robot's current location.</output_port>

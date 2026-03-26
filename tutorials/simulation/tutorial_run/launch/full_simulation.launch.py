@@ -9,7 +9,7 @@ from launch_ros.actions import Node
 def generate_launch_description():
     tree_arg = DeclareLaunchArgument(
         "tree",
-        default_value="src/roaml/policy/bt_tree.xml",
+        default_value="src/tutorials/roaml/policy/bt_tree.xml",
         description="Behavior tree file path passed to bt_executor",
     )
 
