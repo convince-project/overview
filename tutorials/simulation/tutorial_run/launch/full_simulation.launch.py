@@ -13,12 +13,19 @@ def generate_launch_description():
         description="Behavior tree file path passed to bt_executor",
     )
 
+    headless_arg = DeclareLaunchArgument(
+        "headless",
+        default_value="false",
+        description="Start pyrobosim without GUI",
+    )
+
     simulator = Node(
         package="tutorial_sim",
         executable="run",
         name="tutorial_sim",
         output="screen",
         emulate_tty=True,
+        parameters=[{"headless": LaunchConfiguration("headless")}],
     )
 
     translator = Node(
@@ -56,6 +63,7 @@ def generate_launch_description():
     return LaunchDescription(
         [
             tree_arg,
+            headless_arg,
             simulator,
             translator,
             place_object_skill,

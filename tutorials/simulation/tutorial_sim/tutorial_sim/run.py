@@ -18,6 +18,7 @@ def create_ros_node():
     """Initializes ROS node"""
     rclpy.init()
     node = WorldROSWrapper(state_pub_rate=5.0, dynamics_rate=0.01)
+    node.declare_parameter("headless", False)
     
     world_file = os.path.join(
         get_package_share_directory("tutorial_sim"),
@@ -69,24 +70,36 @@ def _shutdown_ros_node(node) -> None:
 
 def main():
     node = create_ros_node()
+    headless = node.get_parameter("headless").get_parameter_value().bool_value
 
-    # Start ROS node in separate thread
-    ros_thread = threading.Thread(target=lambda: node.start(wait_for_gui=True))
-    ros_thread.start()
+    if headless:
+        try:
+            node.start(wait_for_gui=False)
+        except KeyboardInterrupt:
+            pass
+        finally:
+            _reset_world_and_planners(node)
+            _shutdown_ros_node(node)
+            if rclpy.ok():
+                rclpy.shutdown()
+    else:
+        # Start ROS node in separate thread
+        ros_thread = threading.Thread(target=lambda: node.start(wait_for_gui=True))
+        ros_thread.start()
 
-    try:
-        # Start GUI in main thread
-        start_gui(node.world)
-    except KeyboardInterrupt:
-        pass
-    finally:
-        _reset_world_and_planners(node)
-        _shutdown_ros_node(node)
-        if rclpy.ok():
-            rclpy.shutdown()
+        try:
+            # Start GUI in main thread
+            start_gui(node.world)
+        except KeyboardInterrupt:
+            pass
+        finally:
+            _reset_world_and_planners(node)
+            _shutdown_ros_node(node)
+            if rclpy.ok():
+                rclpy.shutdown()
 
-        # Avoid hanging on exit if ROS thread is still unwinding.
-        ros_thread.join(timeout=2.0)
+            # Avoid hanging on exit if ROS thread is still unwinding.
+            ros_thread.join(timeout=2.0)
 
 
 if __name__ == "__main__":
