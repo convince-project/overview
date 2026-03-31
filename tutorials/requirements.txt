@@ -11,3 +11,4 @@ shapely>=2.0.1
 transforms3d
 trimesh
 typing-extensions
+pytest-rerunfailures

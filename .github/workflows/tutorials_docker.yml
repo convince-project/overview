@@ -35,10 +35,9 @@ jobs:
       - name: Build Docker image
         run: |
           docker compose build
-      - name: Build ROS workspace in container
+      - name: Test Docker image
         run: |
-          docker compose run base bash -c "echo ROS Workspace built"
-          docker compose down --remove-orphans
+          docker compose run base colcon test --packages-select tutorial_run --event-handlers console_cohesion+ --return-code-on-test-failure --retest-until-pass 5
       - name: Push to gh registry with sha and branch
         # Do not push on PRs from forks.
         if: ${{ !github.event.pull_request.head.repo.fork }}

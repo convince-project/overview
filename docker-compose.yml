@@ -38,7 +38,7 @@ services:
       - QTWEBENGINE_DISABLE_SANDBOX=1
     volumes:
       # Mount the tutorials code
-      # - ./tutorials/:/convince_ws/src/tutorials/:rw
+      - ./tutorials/:/convince_ws/src/tutorials:rw
       # Mount the colcon build artifacts
       # - .colcon/build/:/convince_ws/build/:rw
       # - .colcon/install/:/convince_ws/install/:rw

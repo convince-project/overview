@@ -23,6 +23,8 @@ setup(
     entry_points={
         "console_scripts": [
             "run = tutorial_sim.run:main",
+            "translate_component = tutorial_sim.translate_component:main",
         ],
     },
 )
+
