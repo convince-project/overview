@@ -18,17 +18,12 @@
 #include <behaviortree_cpp/xml_parsing.h>
 
 // BTCPP nodes in this package
-#include "pyrobosim_btcpp/nodes/battery_nodes.hpp"
-#include "pyrobosim_btcpp/nodes/get_current_location_node.hpp"
 #include "pyrobosim_btcpp/nodes/get_next_location_node.hpp"
-#include "pyrobosim_btcpp/nodes/open_node.hpp"
-#include "pyrobosim_btcpp/nodes/close_node.hpp"
 #include "pyrobosim_btcpp/nodes/detect_object_node.hpp"
 #include "pyrobosim_btcpp/nodes/navigate_node.hpp"
 #include "pyrobosim_btcpp/nodes/pick_object_node.hpp"
 #include "pyrobosim_btcpp/nodes/place_object_node.hpp"
 #include <ROS2Action.h>
-// TO_WORKSHOP_USER: add here the include to your custom actions, if you have any
 
 std::filesystem::path GetFilePath(const std::string& filename)
 {
@@ -92,19 +87,15 @@ int main(int argc, char** argv)
   detect_object_params.default_port_value = "robot/detect_objects";
   detect_object_params.wait_for_server_timeout = std::chrono::seconds(5);
 
-  factory.registerNodeType<BT::IsBatteryLow>("IsBatteryLow", nh->get_logger());
-  factory.registerNodeType<BT::IsBatteryFull>("IsBatteryFull", nh->get_logger());
-  factory.registerNodeType<BT::GetCurrentLocation>("GetCurrentLocation", nh->get_logger());
   factory.registerNodeType<BT::DecoratorGetNextLocation>("GetNextLocation", nh->get_logger());
-  factory.registerNodeType<BT::CloseAction>("Close", params);
   factory.registerNodeType<BT::DetectObject>("DetectObject", detect_object_params);
   // Keep legacy "Navigate" and add RoAML-aligned "NavigateToLocation".
   factory.registerNodeType<BT::NavigateAction>("Navigate", params);
   factory.registerNodeType<BT::NavigateAction>("NavigateToLocation", params);
-  factory.registerNodeType<BT::OpenAction>("Open", params);
   factory.registerNodeType<BT::PickObject>("PickObject", params);
   factory.registerNodeType<BT::PlaceObject>("PlaceObject", params);
   factory.registerNodeType<ROS2Action>("ROS2Action");
+
   if(factory.manifests().count("Sequence") == 0)
   {
     factory.registerBuilder<BT::SequenceNode>(
@@ -126,8 +117,6 @@ int main(int argc, char** argv)
           return std::make_unique<BT::ParallelNode>(name, config);
         });
   }
-
-  // TO_WORKSHOP_USER: register here more Nodes, if you decided to implement your own
 
   // Optionally, we can save the model of the Nodes registered in the factory
   if(save_model)

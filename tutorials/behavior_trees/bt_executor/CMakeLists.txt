@@ -32,13 +32,6 @@ target_include_directories(btcpp_executor PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/3rdparty>)
 
-
-# Install executable and trees
-install(
-  DIRECTORY trees
-  DESTINATION share/${PROJECT_NAME}
-)
-
 install(
   TARGETS btcpp_executor
   DESTINATION lib/${PROJECT_NAME}
