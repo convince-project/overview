@@ -1,15 +1,22 @@
+import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, EmitEvent, RegisterEventHandler
 from launch.event_handlers import OnProcessExit
 from launch.events import Shutdown
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 
 
 def generate_launch_description():
-    tree_arg = DeclareLaunchArgument(
-        "tree",
-        default_value="src/tutorials/roaml/policy/bt_tree.xml",
+    policy_dir = DeclareLaunchArgument(
+        "policy_dir",
+        default_value="/convince_ws/src/tutorials/roaml/policy/",
+        description="The folder where to load the policy from."
+    )
+
+    policy_name = DeclareLaunchArgument(
+        "policy",
+        default_value="bt_tree.xml",
         description="Behavior tree file path passed to bt_executor",
     )
 
@@ -50,7 +57,7 @@ def generate_launch_description():
         name="btcpp_executor",
         output="screen",
         emulate_tty=True,
-        parameters=[{"tree": LaunchConfiguration("tree")}],
+        parameters=[{"tree": PathJoinSubstitution([LaunchConfiguration("policy_dir"), LaunchConfiguration("policy")])}],
     )
 
     shutdown_on_bt_exit = RegisterEventHandler(
@@ -62,7 +69,8 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
-            tree_arg,
+            policy_dir,
+            policy_name,
             headless_arg,
             simulator,
             translator,
