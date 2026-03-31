@@ -13,6 +13,10 @@
 #include <behaviortree_cpp/controls/fallback_node.h>
 #include <behaviortree_cpp/controls/parallel_node.h>
 #include <behaviortree_cpp/controls/sequence_node.h>
+#include <behaviortree_cpp/decorators/inverter_node.h>
+#include <behaviortree_cpp/decorators/retry_node.h>
+#include <behaviortree_cpp/decorators/repeat_node.h>
+
 #include <behaviortree_cpp/loggers/bt_cout_logger.h>
 #include <behaviortree_cpp/loggers/groot2_publisher.h>
 #include <behaviortree_cpp/xml_parsing.h>
@@ -89,8 +93,6 @@ int main(int argc, char** argv)
 
   factory.registerNodeType<BT::DecoratorGetNextLocation>("GetNextLocation", nh->get_logger());
   factory.registerNodeType<BT::DetectObject>("DetectObject", detect_object_params);
-  // Keep legacy "Navigate" and add RoAML-aligned "NavigateToLocation".
-  factory.registerNodeType<BT::NavigateAction>("Navigate", params);
   factory.registerNodeType<BT::NavigateAction>("NavigateToLocation", params);
   factory.registerNodeType<BT::PickObject>("PickObject", params);
   factory.registerNodeType<BT::PlaceObject>("PlaceObject", params);
