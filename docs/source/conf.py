@@ -16,10 +16,11 @@ extensions = [
     # 'sphinx.ext.autodoc',
     'sphinx.ext.intersphinx',
     
-    'myst_parser',
-    'sphinxcontrib.mermaid',
-    'sphinxcontrib.plantuml',
+    # 'myst_parser',
+    # 'sphinxcontrib.mermaid',
+    # 'sphinxcontrib.plantuml',
     # 'autodoc2',
+    'sphinx_mdinclude',
 ]
 
 # intersphinx_mapping = {
@@ -56,6 +57,8 @@ html_static_path = ['_static']
 #     'css/custom.css',
 # ]
 html_style = 'css/custom.css'
+
+html_extra_path = ['../../tutorials/']
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'

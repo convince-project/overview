@@ -1,4 +1,4 @@
-# Offline Verification
+# Offline Verification Tutorial
 
 ## Introduction
 
@@ -9,6 +9,7 @@ Each RoAML model consists of an entry xml file (e.g. [main.xml](main.xml)), that
 ### Environments
 
 For this tutorial, we prepared three environments, of increasing complexity. All models of the environment can be found in the [environment folder](environment).
+
 - [world.ascxml](environment/world.ascxml): A simple, deterministic environment, with a single location where the robot can navigate and pick the object.
 - [world_multiple_locations.ascxml](environment/world_multiple_locations.ascxml): Extends the basic environment by introducing multiple locations that the robot must navigate to find the object. All actions are deterministically successful.
 - [world_multiple_locations_w_failures.ascxml](environment/world_multiple_locations_w_failures.ascxml): Builds on the multiple locations scenario by adding probabilistic failure modes and fault conditions that the system must handle.
@@ -41,15 +42,19 @@ source ../ros_interfaces/install/setup.bash
 Now that the ROS interfaces are sourced, we are ready to generate the verifiable models.
 
 The JANI model, required by SMC Storm, can be obtained by running:
+
 ```bash
 as2fm_roaml_to_jani main.xml --jani-out-file main.jani
 ```
+
 This commands generates a single file, `main.jani`, containing the complete model of the system and the properties to verify on it.
 
 The SCXML models, required by SCAN, can be obtained by running:
+
 ```bash
 as2fm_roaml_to_jani main.xml --scxml-out-dir scxml
 ```
+
 This commands generates a folder with several SCXML files, that can be loaded and executed by SCAN for property verification.
 
 ### Verify the JANI model using SMC_STORM
@@ -57,9 +62,11 @@ This commands generates a folder with several SCXML files, that can be loaded an
 Once we have a JANI model of the system, we can use SMC Storm to verify properties on it.
 
 In particular, for this model we developed the property `snack_at_start`, already present in the JANI file, that reads as follows:
+
 ```
 F((topic_object_loc_msg__ros_fields__x = 0) & ((topic_object_loc_msg__ros_fields__y = 0) & (topic_object_loc_msg__ros_fields__parent = 'world')))
 ```
+
 and checks that, eventually, the snack object reaches the table (location (0, 0)).
 
 We can verify this property using SMC Storm with the following command:
@@ -73,6 +80,7 @@ smc_storm --model main.jani --properties-names snack_at_start --disable-explored
 In order to visualize what is happening, we can use PlotJuggler to visualize the generated traces.
 
 PlotJuggler can be started using the command:
+
 ```bash
 ros2 run plotjuggler plotjuggler -d smc_storm_traces/trace_<id>.csv
 ```
@@ -125,6 +133,7 @@ When we verify the property using SMC Storm (or SCAN) on this model, we observe 
 To address the failures, we developed a more robust BT policy: [bt_tree_locations_handle_failures.xml](policy/bt_tree_locations_handle_failures.xml). This policy is used in the [main_locations_w_failures.xml](main_locations_w_failures.xml) model.
 
 The new policy introduces multiple layers of retry logic to handle probabilistic failures:
+
 - **Navigation retries**: Each `NavigateToLocation` action is wrapped in a `RetryUntilSuccessful` node with 4 attempts, handling the 10% navigation failure rate
 - **Detection retries**: The `DetectObject` action has 3 retry attempts to overcome the 20% detection failure rate
 - **Pick retries**: The `PickObject` action also gets 3 retry attempts to handle the 20% pick failure rate

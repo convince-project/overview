@@ -206,4 +206,5 @@ This is a statistical model checking engine for DTMC models given in JANI, which
 .. toctree::
    :hidden:
 
-   tutorials
+   tutorial_introduction
+   tutorial_roaml
