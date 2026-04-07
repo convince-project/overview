@@ -25,7 +25,7 @@ robots:
       max_time: 10.0
     action_execution_options:
       navigate:
-        success_probability: 0.9
+        success_probability: 1.0
         rng_seed: 42
         # battery_usage: 0.5  # Per meter traveled
       pick:
