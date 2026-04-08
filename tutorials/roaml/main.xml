@@ -24,6 +24,6 @@
 
     <properties>
         <input type="jani" src="./properties/properties.jani" />
-        <input type="xml" src="./properties/properties.xml" />
+        <!-- <input type="xml" src="./properties/properties.xml" /> -->
     </properties>
 </roaml>
