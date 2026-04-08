@@ -3,12 +3,13 @@ astar
 matplotlib
 numpy<2.1.0
 pycollada
+pymongo==4.8.0
 PySide6>=6.7.1
 pytest-dependency
+pytest-rerunfailures
 PyYAML
 scipy
 shapely>=2.0.1
 transforms3d
 trimesh
 typing-extensions
-pytest-rerunfailures
