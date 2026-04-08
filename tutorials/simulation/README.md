@@ -25,6 +25,10 @@ Then, for example:
 
 The tutorial comes with a bt_executor node that can execute a behavior tree to control the robot.
 One example tree is provided in `tutorials/roaml/policy/bt_tree.xml`.
+You may inspect the tree using groot2 by running `docker compose run base groot -f /convince_ws/src/tutorials/roaml/pol
+icy/bt_tree.xml`.
+(Click `OK` on all the popups about missing nodes, and you should see the tree.)
+
 To run the bt_executor with this tree, execute
 
 ```bash
