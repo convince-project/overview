@@ -13,7 +13,6 @@
   <test_depend>python3-pytest</test_depend>
   <depend>pyrobosim_msgs</depend>
   <depend>refine-plan</depend>
-  <depend>pymongo</depend>
 
   <export>
     <build_type>ament_python</build_type>
