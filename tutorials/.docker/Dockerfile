@@ -16,7 +16,8 @@ RUN apt-get update && \
     libnss3 libasound2t64 libxkbfile1 \
     python3-pip python3-tk python3-wrapt python3-inflection \
     ros-jazzy-example-interfaces ros-jazzy-rqt-service-caller \
-    libczmq-dev ros-jazzy-zmqpp-vendor-dbgsym ros-jazzy-zmqpp-vendor libczmq-dev libczmq4 curl qt6-scxml*
+    libczmq-dev ros-jazzy-zmqpp-vendor-dbgsym ros-jazzy-zmqpp-vendor libczmq-dev libczmq4 curl qt6-scxml* \
+    rustup
 
 # Create a ROS 2 workspace.
 RUN mkdir -p /convince_ws/src/
@@ -55,7 +56,11 @@ RUN curl -O -L https://github.com/convince-project/smc_storm/releases/download/0
 # (AS2FM)
 WORKDIR /
 RUN git clone https://github.com/convince-project/AS2FM.git
-RUN pip3 install --break-system-packages AS2FM
+RUN pip3 install --break-system-packages /AS2FM
+
+# (SCAN)
+RUN rustup default stable
+RUN cargo install --git https://github.com/convince-project/scan
 
 # Set up the entrypoint.
 COPY tutorials/.docker/entrypoint.sh /entrypoint.sh
