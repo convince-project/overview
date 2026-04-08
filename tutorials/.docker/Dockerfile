@@ -62,6 +62,8 @@ RUN pip3 install --break-system-packages /AS2FM
 RUN rustup default stable
 RUN cargo install --git https://github.com/convince-project/scan
 
+# Set back the workdir to be the convince_ws
+WORKDIR /convince_ws
 # Set up the entrypoint.
 COPY tutorials/.docker/entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
