@@ -1,7 +1,7 @@
 {
     "properties": [
         {
-            "name": "snack_at_start",
+            "name": "snack_at_table",
             "expression": {
                 "op": "filter",
                 "fun": "values",
@@ -14,14 +14,14 @@
                             "left": {
                                 "op": "=",
                                 "left": "topic_object_loc_msg__ros_fields__x",
-                                "right": 0
+                                "right": 4.0
                             },
                             "right": {
                                 "op": "∧",
                                 "left": {
                                     "op": "=",
                                     "left": "topic_object_loc_msg__ros_fields__y",
-                                    "right": 0
+                                    "right": 2.0
                                 },
                                 "right": {
                                     "op": "=",
