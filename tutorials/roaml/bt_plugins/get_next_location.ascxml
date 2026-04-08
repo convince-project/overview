@@ -15,15 +15,13 @@
     <state id="initial">
         <bt_tick target="initial">
             <if cond="loc_id == 0">
-                <bt_set_output key="location" expr="'table'" />
-            <elseif cond="loc_id == 1" />
                 <bt_set_output key="location" expr="'fridge'" />
-            <elseif cond="loc_id == 2" />
-                <bt_set_output key="location" expr="'bin'" />
+            <elseif cond="loc_id == 1" />
+                <bt_set_output key="location" expr="'dining_table'" />
             <else/>
-                <bt_set_output key="location" expr="'start'" />
+                <bt_set_output key="location" expr="'kitchen_table'" />
             </if>
-            <assign location="loc_id" expr="(loc_id + 1) % 4"/>
+            <assign location="loc_id" expr="(loc_id + 1) % 3"/>
             <bt_return_status status="SUCCESS" />
         </bt_tick>
         <bt_halt target="initial">
