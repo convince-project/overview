@@ -35,4 +35,6 @@ To run the bt_executor with this tree, execute
 docker compose run base ros2 launch tutorial_run full_simulation.launch.py policy:=bt_tree.xml
 ```
 
+(You can also choose to run the other behavior trees in the same folder, with `policy:=bt_tree_locations.xml` or `policy:=bt_tree_locations_handle_failures.xml`.)
+
 Observe how the robot first navigates to the fridge, then opens it, detects the butter, picks it up, navigates to the table, and places it there.
