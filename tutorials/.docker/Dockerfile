@@ -15,8 +15,9 @@ RUN apt-get update && \
     libxi-dev libxkbcommon-dev libxkbcommon-x11-dev libxrender-dev \
     libnss3 libasound2t64 libxkbfile1 \
     python3-pip python3-tk python3-wrapt python3-inflection \
-    ros-jazzy-example-interfaces ros-jazzy-rqt-service-caller \
-    libczmq-dev ros-jazzy-zmqpp-vendor-dbgsym ros-jazzy-zmqpp-vendor libczmq-dev libczmq4 curl qt6-scxml*
+    ros-jazzy-example-interfaces ros-jazzy-rqt-service-caller ros-jazzy-plotjuggler ros-jazzy-plotjuggler-ros \
+    libczmq-dev ros-jazzy-zmqpp-vendor-dbgsym ros-jazzy-zmqpp-vendor libczmq-dev libczmq4 \
+    curl qt6-scxml* rustup
 
 # Create a ROS 2 workspace.
 RUN mkdir -p /convince_ws/src/
@@ -36,18 +37,6 @@ RUN git clone --depth 1 https://github.com/BehaviorTree/BehaviorTree.ROS2.git sr
 RUN source /opt/ros/jazzy/setup.bash && \
     rosdep install --from-paths src -y --ignore-src
 
-# # (smc_storm)
-# RUN curl -O -L https://github.com/convince-project/smc_storm/releases/download/0.0.6/smc_storm_executable.tar.gz && \
-#     tar -xzf smc_storm_executable.tar.gz && \
-#     ./install.sh --install-dependencies && \
-#     ln -s /convince_ws/bin/smc_storm /usr/local/bin/smc_storm
-# # (AS2FM)
-# RUN cd src/dependencies/convince/AS2FM && \
-#     pip3 install --break-system-packages . && \
-#     pip3 uninstall -y --break-system-packages js2py && \
-#     pip3 install --break-system-packages git+https://github.com/felixonmars/Js2Py.git@py3.12  # Temporary fix for js2py && \
-#     pip3 uninstall -y --break-system-packages matplotlib  # Temporary fix for MatPlotLib conflict
-
 # (ros)
 COPY tutorials/ /convince_ws/src/tutorials/
 RUN rosdep update && \
@@ -56,6 +45,25 @@ RUN source /opt/ros/jazzy/setup.bash && \
     colcon build --symlink-install && \
     source install/setup.bash
 
+# (smc_storm)
+RUN mkdir /smc_storm
+WORKDIR /smc_storm
+RUN curl -O -L https://github.com/convince-project/smc_storm/releases/download/0.1.8/smc_storm_executable.tar.gz && \
+    tar -xzf smc_storm_executable.tar.gz && \
+    ./install.sh --install-dependencies && \
+    ln -s /smc_storm/bin/smc_storm /usr/local/bin/smc_storm
+
+# (AS2FM)
+WORKDIR /
+RUN git clone https://github.com/convince-project/AS2FM.git
+RUN pip3 install --break-system-packages /AS2FM
+
+# (SCAN)
+RUN rustup default stable
+RUN cargo install --git https://github.com/convince-project/scan
+
+# Set back the workdir to be the convince_ws
+WORKDIR /convince_ws
 # Set up the entrypoint.
 COPY tutorials/.docker/entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
