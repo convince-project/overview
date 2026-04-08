@@ -51,7 +51,7 @@ WORKDIR /smc_storm
 RUN curl -O -L https://github.com/convince-project/smc_storm/releases/download/0.1.8/smc_storm_executable.tar.gz && \
     tar -xzf smc_storm_executable.tar.gz && \
     ./install.sh --install-dependencies && \
-    ln -s /convince_ws/bin/smc_storm /usr/local/bin/smc_storm
+    ln -s /smc_storm/bin/smc_storm /usr/local/bin/smc_storm
 
 # (AS2FM)
 WORKDIR /
