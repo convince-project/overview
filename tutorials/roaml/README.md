@@ -91,7 +91,7 @@ as2fm_roaml_to_jani main_locations_w_failures.xml --jani-out-file main_locations
 
 Once we have a JANI model of the system, we can use SMC Storm to verify properties on it.
 
-In particular, for this model we developed the property `snack_at_start`, already present in the JANI file, that reads as follows:
+In particular, for this model we developed the property `snack_at_table`, already present in the JANI file, that reads as follows:
 
 ```
 F((topic_object_loc_msg__ros_fields__x = 0) & ((topic_object_loc_msg__ros_fields__y = 0) & (topic_object_loc_msg__ros_fields__parent = 'world')))
@@ -102,7 +102,7 @@ and checks that, eventually, the snack object reaches the table (location (0, 0)
 We can verify this property using SMC Storm with the following command:
 
 ```bash
-smc_storm --model main.jani --properties-names snack_at_start --disable-explored-states-caching --n-threads 10 --show-statistics --batch-size 5 --traces-folder smc_storm_traces
+smc_storm --model main.jani --properties-names snack_at_table --disable-explored-states-caching --n-threads 10 --show-statistics --batch-size 5 --traces-folder smc_storm_traces
 ```
 
 #### Introspect CSV traces using PlotJuggles

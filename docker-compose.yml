@@ -26,6 +26,8 @@ services:
     # Networking and IPC for ROS 2
     network_mode: host
     ipc: host
+    # Needed for groot
+    privileged: true
     environment:
       # Ensure your ROS 2 system is only visible on the local network
       - ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
@@ -46,3 +48,8 @@ services:
       # Allows graphical programs in the container
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ${XAUTHORITY:-$HOME/.Xauthority}:/root/.Xauthority
+    # FUSE needed for groot
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - /dev/fuse:/dev/fuse

@@ -1,16 +1,17 @@
 <root BTCPP_format="4">
     <BehaviorTree ID="MainTree">
         <Sequence name="main_seq">
-            <GetNextLocation location="{current_location}" />
-            <Repeat name="detect_or_next" num_cycles="4">
-                <Sequence>
-                    <NavigateToLocation name="navigate_to_obj" location="{current_location}" />
-                    <Fallback>
-                        <DetectObject name="detect_obj" object_id="{object}" />
+            <Inverter>
+                <Repeat name="detect_or_next" num_cycles="3">
+                    <Sequence>
                         <GetNextLocation location="{current_location}" />
-                    </Fallback>
-                </Sequence>
-            </Repeat>
+                        <NavigateToLocation name="navigate_to_obj" location="{current_location}" />
+                        <Inverter>
+                            <DetectObject name="detect_obj" object_id="{object}" />
+                        </Inverter>
+                    </Sequence>
+                </Repeat>
+            </Inverter>
             <PickObject name="pick_obj" object_id="{object}" />
             <NavigateToLocation name="navigate_to_start" location="table" />
             <ROS2Action name="place_action_skill" service_name_tick="/PlaceObjectSkill/tick"  

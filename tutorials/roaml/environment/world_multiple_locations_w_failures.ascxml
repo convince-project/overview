@@ -25,7 +25,9 @@
         <!-- Location ID: 2 -->
         <data id="location_fridge" type="Coordinates" expr="{'x': 1.0, 'y': -2.0}" />
         <!-- Location ID: 3 -->
-        <data id="location_bin" type="Coordinates" expr="{'x': -2.0, 'y': -2.0}" />
+        <data id="location_dining_table" type="Coordinates" expr="{'x': -2.0, 'y': -2.0}" />
+        <!-- Location ID: 4 -->
+        <data id="location_kitchen_table" type="Coordinates" expr="{'x': -4.0, 'y': -2.0}" />
         <!-- The initial location of the robot in the world is (0,0). -->
         <data id="robot_loc" type="Coordinates" expr="{'x': 0, 'y': 0}" />
         <!-- Variable referring to the index of the object held by the robot. This is -1 if it holds nothing. -->
@@ -40,19 +42,19 @@
 
     <state id="init">
         <transition>
-            <target id="idle" prob="0.2">
-                <assign location="obj_loc.x" expr="location_table.x" />
-                <assign location="obj_loc.y" expr="location_table.y" />
-                <assign location="obj_loc.parent" expr="'world'" />
-            </target>
             <target id="idle" prob="0.3">
                 <assign location="obj_loc.x" expr="location_fridge.x" />
                 <assign location="obj_loc.y" expr="location_fridge.y" />
                 <assign location="obj_loc.parent" expr="'world'" />
             </target>
+            <target id="idle" prob="0.2">
+                <assign location="obj_loc.x" expr="location_dining_table.x" />
+                <assign location="obj_loc.y" expr="location_dining_table.y" />
+                <assign location="obj_loc.parent" expr="'world'" />
+            </target>
             <target id="idle" prob="0.5">
-                <assign location="obj_loc.x" expr="location_bin.x" />
-                <assign location="obj_loc.y" expr="location_bin.y" />
+                <assign location="obj_loc.x" expr="location_kitchen_table.x" />
+                <assign location="obj_loc.y" expr="location_kitchen_table.y" />
                 <assign location="obj_loc.parent" expr="'world'" />
             </target>
         </transition>
@@ -80,8 +82,10 @@
                 <assign location="req_loc" expr="location_table" />
             <elseif cond="_goal.location_id == 'fridge'" />
                 <assign location="req_loc" expr="location_fridge" />
-            <elseif cond="_goal.location_id == 'bin'" />
-                <assign location="req_loc" expr="location_bin" />
+            <elseif cond="_goal.location_id == 'dining_table'" />
+                <assign location="req_loc" expr="location_dining_table" />
+            <elseif cond="_goal.location_id == 'kitchen_table'" />
+                <assign location="req_loc" expr="location_kitchen_table" />
             <else/>
                 <assign location="req_loc.x" expr="-1000" /> <!-- Dummy x value, should never happen! -->
             </if>

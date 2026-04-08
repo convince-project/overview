@@ -1,7 +1,7 @@
 <roaml>
     <parameters>
         <max_time value="100" unit="s" />
-        <max_array_size value="10" />
+        <max_array_size value="15" />
     </parameters>
 
     <data_declarations>
