@@ -19,7 +19,7 @@
         <!-- Only one object in this world, located at (4,2). -->
         <data id="obj_loc" type="ObjectLocation" expr="{'parent': '', 'x': 0.0, 'y': 0.0}" />
         <!-- Location ID: 0 -->
-        <data id="location_start" type="Coordinates" expr="{'x': 0.0, 'y': 0.0}" />
+        <data id="location_fridge" type="Coordinates" expr="{'x': 1.0, 'y': 1.0}" />
         <!-- Location ID: 1 -->
         <data id="location_table" type="Coordinates" expr="{'x': 4.0, 'y': 2.0}" />
         <!-- The initial location of the robot in the world is (0,0). -->
@@ -36,8 +36,8 @@
 
     <state id="init">
         <transition target="idle">
-            <assign location="obj_loc.x" expr="location_table.x" />
-            <assign location="obj_loc.y" expr="location_table.y" />
+            <assign location="obj_loc.x" expr="location_fridge.x" />
+            <assign location="obj_loc.y" expr="location_fridge.y" />
             <assign location="obj_loc.parent" expr="'world'" />
         </transition>
     </state>
@@ -58,8 +58,8 @@
 
         <ros_action_handle_goal name="act_nav" target="handle_nav_request">
             <assign location="goal_id" expr="_action.goal_id" />
-            <if cond="_goal.location_id == 'start'">
-                <assign location="req_loc" expr="location_start" />
+            <if cond="_goal.location_id == 'fridge'">
+                <assign location="req_loc" expr="location_fridge" />
             <elseif cond="_goal.location_id == 'table'" />
                 <assign location="req_loc" expr="location_table" />
             <else/>

@@ -36,6 +36,9 @@ RUN git clone -b 4.3.4 https://github.com/sea-bass/pyrobosim.git src/pyrobosim
 RUN git clone --depth 1 https://github.com/BehaviorTree/BehaviorTree.ROS2.git src/behaviortree_ros2
 RUN source /opt/ros/jazzy/setup.bash && \
     rosdep install --from-paths src -y --ignore-src
+RUN curl -O -L https://pub-32cef6782a9e411e82222dee82af193e.r2.dev/Groot2-v1.9.0-x86_64.AppImage
+RUN chmod +x Groot2-v1.9.0-x86_64.AppImage && \
+    mv Groot2-v1.9.0-x86_64.AppImage /usr/local/bin/groot
 
 # (ros)
 COPY tutorials/ /convince_ws/src/tutorials/

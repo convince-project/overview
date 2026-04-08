@@ -9,14 +9,9 @@
                             <NavigateToLocation name="navigate_to_obj" location="{current_location}" />
                         </RetryUntilSuccessful>
                         <Inverter>
-                            <Fallback name="detection_or_get_next">
-                                <RetryUntilSuccessful name="detection_attempts" num_attempts="3">
-                                    <DetectObject name="detect_obj" object_id="{object_id}" />
-                                </RetryUntilSuccessful>
-                                <Inverter>
-                                    <GetNextLocation name="get_next_loc" location="{current_location}" />
-                                </Inverter>
-                            </Fallback>
+                            <RetryUntilSuccessful name="detection_attempts" num_attempts="3">
+                                <DetectObject name="detect_obj" object_id="{object_id}" />
+                            </RetryUntilSuccessful>
                         </Inverter>
                     </Sequence>
                 </Repeat>
