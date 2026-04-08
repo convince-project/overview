@@ -149,3 +149,7 @@ objects:
     category: snacks
   - parent: fridge
     category: butter
+  - category: bread
+    parent:
+      choices: [dining_table, fridge, kitchen_table, side_table]
+      probabilities: [0.5, 0.1, 0.1, 0.3]

@@ -17,7 +17,7 @@ RUN apt-get update && \
     python3-pip python3-tk python3-wrapt python3-inflection \
     ros-jazzy-example-interfaces ros-jazzy-rqt-service-caller ros-jazzy-plotjuggler ros-jazzy-plotjuggler-ros \
     libczmq-dev ros-jazzy-zmqpp-vendor-dbgsym ros-jazzy-zmqpp-vendor libczmq-dev libczmq4 \
-    curl qt6-scxml* rustup
+    curl qt6-scxml* rustup tmux
 
 # Create a ROS 2 workspace.
 RUN mkdir -p /convince_ws/src/
@@ -61,6 +61,13 @@ RUN pip3 install --break-system-packages /AS2FM
 # (SCAN)
 RUN rustup default stable
 RUN cargo install --git https://github.com/convince-project/scan
+
+
+# Install REFINE-PLAN
+RUN git clone -b overarching_demo https://github.com/convince-project/refine-plan.git src/refine-plan
+RUN cd src/refine-plan; pip3 install --break-system-packages -r requirements.txt
+RUN cd src/refine-plan; pip3 install --break-system-packages .
+RUN rm -r src/refine-plan
 
 # Set back the workdir to be the convince_ws
 WORKDIR /convince_ws
