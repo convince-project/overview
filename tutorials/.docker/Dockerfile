@@ -63,8 +63,8 @@ RUN pip3 install --break-system-packages /AS2FM
 
 # (SCAN)
 RUN rustup default stable
-RUN cargo install --git https://github.com/convince-project/scan
-
+RUN cargo install smc_scan --version 0.1.0 --locked
+RUN echo "PATH=$PATH:~/.cargo/bin" >> ~/.bashrc
 
 # Install REFINE-PLAN
 RUN git clone -b overarching_demo https://github.com/convince-project/refine-plan.git src/refine-plan
