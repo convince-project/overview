@@ -31,7 +31,7 @@ For this tutorial, we prepared a docker container that can be started using dock
 
 ```bash
 cd overview
-docker compose run --pull missing --rm base /bin/bash
+docker compose run --rm base /bin/bash
 ```
 
 In the remainder of this tutorial, we will assume that this container is used.
@@ -114,7 +114,7 @@ In particular, for this model we developed the property `snack_at_start`, alread
 </property>
 ```
 
-and that checks that, eventually, the snack object reaches the table (in position `(0, 0)`).
+and that checks that, eventually, the snack object is at the table (in position `(0, 0)`).
 We can verify that the SCXML model compiled correctly and is accepted by Scan without errors with the following command:
 
 ```bash
