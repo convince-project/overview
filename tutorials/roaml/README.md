@@ -25,21 +25,28 @@ Finally, we developed a number of BT Plugins, to be used by the policies we impl
 
 ## Tools usage
 
+### Start the Docker container
+
+For this tutorial, we prepared a docker container that can be started using docker compose:
+
+```bash
+cd overview
+docker compose run --pull missing --rm base /bin/bash
+```
+
+In the remainder of this tutorial, we will assume that this container is used.
+
 ### Get the verifiable model by using AS2FM
 
 This section contains general instructions for generating a verifiable model starting from a RoAML xml file.
 
 For these instructions, let's assume we want to generate the model starting from the [main.xml file](main.xml).
 
-To do that, the first step is to source the required ROS interfaces (located in the [ros_interfaces folder](../ros_interfaces)):
-
-Assuming we are in the `roaml` folder, and the interface were already built, run the following:
+To do that, we have to navigate the the `roaml` folder containing the models:
 
 ```bash
-source ../ros_interfaces/install/setup.bash
+cd /convince_ws/src/tutorials/roaml
 ```
-
-Now that the ROS interfaces are sourced, we are ready to generate the verifiable models.
 
 The JANI model, required by SMC Storm, can be obtained by running:
 
@@ -56,29 +63,6 @@ as2fm_roaml_to_jani main.xml --scxml-out-dir scxml
 ```
 
 This commands generates a folder with several SCXML files, that can be loaded and executed by SCAN for property verification.
-
-#### Quick run guide (tested commands)
-
-To avoid environment/path issues, use the commands below exactly as shown.
-
-From the repository root:
-
-```bash
-cd examples/overarching_tutorial/roaml
-source ../ros_interfaces/install/setup.bash
-```
-
-Generate SCXML models for SCAN:
-
-```bash
-as2fm_roaml_to_jani main.xml --scxml-out-dir new_folder
-```
-
-Generate JANI model for SMC Storm:
-
-```bash
-as2fm_roaml_to_jani main.xml --jani-out-file main.jani
-```
 
 You can replace `main.xml` with any other entry model in this folder, for example:
 
@@ -119,7 +103,52 @@ Afterwards, topics can be plotted to see their evolution along the trace.
 
 ### Verify the SCXML model using SCAN
 
-TODO
+Once we have a SCXML model of the system, we can use Scan to verify properties on it.
+
+In particular, for this model we developed the property `snack_at_start`, already present in the RoAML model, that reads as follows:
+
+```xml
+<property id="snack_at_start" pattern="existence">
+  <event>x == 0 && y == 0 && parent == 'world'</event>
+  <scope type="globally"/>
+</property>
+```
+
+and that checks that, eventually, the snack object reaches the table (in position `(0, 0)`).
+We can verify that the SCXML model compiled correctly and is accepted by Scan without errors with the following command:
+
+```bash
+scan [SCXML/MODEL/DIR/] validate
+```
+
+We can verify this property using Scan with the following command:
+
+```bash
+scan [SCXML/MODEL/DIR/] verify snack_at_start --duration 1000
+```
+
+(the argument `--duration 1000` informs Scan on how many time-steps the execution takes).
+
+Run `scan --help` (or just `scan`) to see the help message with the complete list of available options.
+
+#### Generate CSV traces
+
+In order to generate execution traces, e.g. 100, we can use the command:
+
+```bash
+scan [SCXML/MODEL/DIR/] trace snack_at_start --duration 1000 --traces 100
+```
+
+Generated traces will be individually written to disk as gz-compressed CSV files,
+and sorted into folders based on the satisfaction of the property.
+
+Traces can be opened with any CSV-compatible tool
+but are particularly meant to be examined as spreadsheets,
+so that plots and graphs can be generated from the included data.
+Opening a trace will show the sequence of system messages exchanges,
+including their data payload,
+and the current state of the open ports (the state variables defining the properties, so `x`, `y` and `parent` in this case),
+from which the execution can be reconstructed.
 
 ## The tutorial
 
