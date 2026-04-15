@@ -19,10 +19,9 @@ robots:
     path_executor:
       type: constant_velocity
     path_planner:
-      type: rrt
-      bidirectional: false
-      max_connection_dist: 0.5
-      max_time: 10.0
+      type: astar
+      grid_resolution: 0.05
+      grid_inflation_radius: 0.05
     action_execution_options:
       navigate:
         success_probability: 1.0
@@ -118,14 +117,14 @@ locations:
       category: table
       pose:
         position:
-          x: -2.75
+          x: -2.7
           y: 4.5
     - name: side_table
       parent: dining
       category: table
       pose:
         position:
-          x: -4.25
+          x: -4.3
           y: 4.5
     - name: kitchen_table
       parent: kitchen
