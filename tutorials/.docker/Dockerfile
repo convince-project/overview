@@ -67,7 +67,7 @@ RUN cargo install smc_scan --version 0.1.0 --locked
 RUN echo "PATH=$PATH:~/.cargo/bin" >> ~/.bashrc
 
 # Install REFINE-PLAN
-RUN git clone -b overarching_demo https://github.com/convince-project/refine-plan.git src/refine-plan
+RUN git clone https://github.com/convince-project/refine-plan.git src/refine-plan
 RUN cd src/refine-plan; pip3 install --break-system-packages -r requirements.txt
 RUN cd src/refine-plan; pip3 install --break-system-packages .
 RUN rm -r src/refine-plan

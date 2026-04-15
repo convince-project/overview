@@ -208,3 +208,4 @@ This is a statistical model checking engine for DTMC models given in JANI, which
 
    tutorial_introduction
    tutorial_roaml
+   tutorial_refine_plan
