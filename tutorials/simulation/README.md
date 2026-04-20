@@ -21,6 +21,7 @@ Then, for example:
 - Click `Navigate`.
 - Click `Place`.
 
+
 ## Controlling the robot with a Behavior Tree
 
 The tutorial comes with a bt_executor node that can execute a behavior tree to control the robot.
