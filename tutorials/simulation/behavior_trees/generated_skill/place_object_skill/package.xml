@@ -8,6 +8,7 @@
   <version>0.0.0</version>
   <description>Package description</description>
   <maintainer email="Stefano.Bernagozzi@iit.it">Stefano Bernagozzi</maintainer>
+  <maintainer email="beniamino.squitieri@iit.it">Beniamino Squitieri</maintainer>
   <license>BSD-3-Clause</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
