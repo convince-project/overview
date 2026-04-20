@@ -5,6 +5,8 @@
   <version>1.0.0</version>
   <description>Launch package to run the overarching tutorial simulation stack.</description>
   <maintainer email="christian.henkel2@de.bosch.com">Christian Henkel</maintainer>
+  <maintainer email="marco.lampacrescia@de.bosch.com">Marco Lampacrescia</maintainer>
+  <maintainer email="beniamino.squitieri@iit.it">Beniamino Squitieri</maintainer>
   <license>Apache-2.0</license>
 
   <exec_depend>launch</exec_depend>
