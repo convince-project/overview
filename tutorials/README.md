@@ -1,5 +1,8 @@
 # Tutorial Introduction
 
+These tutorials are designed to give you a introduction to the tools that the CONVINCE toolbox provides by walking you through using them on a simple example.
+The example that all the tutorials are based on is a fetch and carry task, where a mobile robot moves in a household environment, picks up an object, and delivers it to a target location.
+
 ## Prerequisites
 
 To follow the tutorials using the provided Docker image, you need to have `docker` and `docker compose` installed on your machine.
@@ -7,10 +10,7 @@ Please refer to the [Docker installation instructions](https://docs.docker.com/e
 
 ## Running the simulation
 
-These tutorials are designed to give you a introduction to the tools that the CONVINCE toolbox provides by walking you through using them on a simple example.
-The example that all the tutorials are based on is a fetch and carry task, where a mobile robot moves in a household environment, picks up an object, and delivers it to a target location.
-
-To run the simulation for the tutorials, execute in the root of the repository:
+To run the simulation, execute in the root of the repository:
 
 ```bash
 docker compose pull
@@ -26,14 +26,17 @@ You should see a GUI something like this:
 In the opened GUI, you can interact with the simulation by triggering actions of the robot.
 For example
 
+- Type `fridge` into the `Goal query` box.
+- Click `Navigate`.
+- Click `Open`. (Notice that all these may fail with some probability. If nothing changes, just try again.)
+- Click `Detect`.
+- Type `butter0` into the `Goal query` box.
+- Click `Pick`.
+- Type `table` into the `Goal query` box.
+- Click `Navigate`.
+- Click `Place`.
 - Type `kitchen_table` in the `Goal query`-field
 - Click `Navigate`
-- Watch the robot navigate to the kitchen table
-- Observer that now more actions are available, such as `Pick` and `Detect`
-- We can see that there is an object `soda0` on the table
-- Type `soda0` in the `Goal query`-field
-- Click `Pick`
-- Note that the robot may fail to pick the object with a certain probability, so you may have to try a few times until it succeeds
 
 You may close the GUI, as it will be automatically started again in the next step.
 
@@ -54,6 +57,8 @@ To run the simulation again and execute the behavior tree, run:
 ```bash
 docker compose run base ros2 launch tutorial_run full_simulation.launch.py policy:=bt_tree.xml
 ```
+
+(You may also choose to run the other behavior trees in the same folder, with `policy:=bt_tree_locations.xml` or `policy:=bt_tree_locations_handle_failures.xml`.)
 
 ## Next steps
 
