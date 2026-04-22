@@ -3,9 +3,10 @@
 <package format="3">
   <name>bt_nodes</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Implementation of custom BT plugins for the overarching tutorial. Adaptation of https://github.com/ros-wg-delib/examples/tree/main/technologies/BehaviorTree.CPP/pyrobosim_btcpp</description>
   <maintainer email="stefano.bernagozzi@iit.it">Stefano Bernagozzi</maintainer>
-  <license>TODO: License declaration</license>
+  <maintainer email="beniamino.squitieri@iit.it">Beniamino Squitieri</maintainer>
+  <license>BSD-3-Clause</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>bt_interfaces_dummy</depend>
