@@ -1,5 +1,10 @@
 # Tutorial Introduction
 
+## Prerequisites
+
+To follow the tutorials using the provided Docker image, you need to have `docker` and `docker compose` installed on your machine.
+Please refer to the [Docker installation instructions](https://docs.docker.com/engine/install/) for your operating system.
+
 ## Running the simulation
 
 These tutorials are designed to give you a introduction to the tools that the CONVINCE toolbox provides by walking you through using them on a simple example.
