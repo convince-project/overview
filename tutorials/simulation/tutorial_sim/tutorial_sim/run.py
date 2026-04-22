@@ -25,12 +25,22 @@ def create_ros_node():
     # I'd rather do this than change the world file
     node.declare_parameter("detect_succ_prob", rclpy.Parameter.Type.DOUBLE)
     detect_prob = node.get_parameter_or("detect_succ_prob", alternative_value=None)
-    
-    world_file = os.path.join(
-        get_package_share_directory("tutorial_sim"),
-        "worlds",
-        "world.yaml",
-    )
+
+    node.declare_parameter("closed_doors_world", False)
+    closed_doors_world = node.get_parameter("closed_doors_world").get_parameter_value().bool_value
+
+    if closed_doors_world:
+        world_file = os.path.join(
+            get_package_share_directory("tutorial_sim"),
+            "worlds",
+            "world_closed_doors.yaml",
+        )
+    else:
+        world_file = os.path.join(
+            get_package_share_directory("tutorial_sim"),
+            "worlds",
+            "world.yaml",
+        )
     world = WorldYamlLoader().from_file(world_file)
 
     if detect_prob is not None:
