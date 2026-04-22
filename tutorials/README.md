@@ -14,7 +14,6 @@ To run the simulation for the tutorials, execute in the root of the repository:
 
 ```bash
 docker compose pull
-docker compose up -d
 docker compose run base ros2 run tutorial_sim run 
 ```
 
