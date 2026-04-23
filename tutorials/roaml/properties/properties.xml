@@ -9,7 +9,7 @@
   </ports>
 
   <guarantees>
-    <property id="snack_on_table" pattern="existence">
+    <property id="butter_at_table" pattern="existence">
       <event>x == 4.0 &amp;&amp; y == 2.0 &amp;&amp; parent == 'world'</event>
       <scope type="globally"/>
     </property>

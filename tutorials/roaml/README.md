@@ -75,18 +75,18 @@ as2fm_roaml_to_jani main_locations_w_failures.xml --jani-out-file main_locations
 
 Once we have a JANI model of the system, we can use SMC Storm to verify properties on it.
 
-In particular, for this model we developed the property `snack_at_table`, already present in the JANI file, that reads as follows:
+In particular, for this model we developed the property `butter_at_table`, already present in the JANI file, that reads as follows:
 
 ```
-F((topic_object_loc_msg__ros_fields__x = 0) & ((topic_object_loc_msg__ros_fields__y = 0) & (topic_object_loc_msg__ros_fields__parent = 'world')))
+F((topic_object_loc_msg__ros_fields__x = 4) & ((topic_object_loc_msg__ros_fields__y = 2) & (topic_object_loc_msg__ros_fields__parent = 'world')))
 ```
 
-and checks that, eventually, the snack object reaches the table (location (0, 0)).
+and checks that, eventually, the butter object reaches the table (location (4.0, 2.0)).
 
 We can verify this property using SMC Storm with the following command:
 
 ```bash
-smc_storm --model main.jani --properties-names snack_at_table --disable-explored-states-caching --n-threads 10 --show-statistics --batch-size 5 --traces-folder smc_storm_traces
+smc_storm --model main.jani --properties-names butter_at_table --disable-explored-states-caching --n-threads 10 --show-statistics --batch-size 5 --traces-folder smc_storm_traces
 ```
 
 #### Introspect CSV traces using PlotJuggles
@@ -105,11 +105,11 @@ Afterwards, topics can be plotted to see their evolution along the trace.
 
 Once we have a SCXML model of the system, we can use Scan to verify properties on it.
 
-In particular, for this model we developed the property `snack_at_start`, already present in the RoAML model, that reads as follows:
+In particular, for this model we developed the property `butter_at_table`, already present in the RoAML model, that reads as follows:
 
 ```xml
-<property id="snack_at_start" pattern="existence">
-  <event>x == 0 && y == 0 && parent == 'world'</event>
+<property id="butter_at_table" pattern="existence">
+  <event>x == 4 && y == 2 && parent == 'world'</event>
   <scope type="globally"/>
 </property>
 ```
@@ -124,7 +124,7 @@ scan [SCXML/MODEL/DIR/] validate
 We can verify this property using Scan with the following command:
 
 ```bash
-scan [SCXML/MODEL/DIR/] verify snack_at_start --duration 1000
+scan [SCXML/MODEL/DIR/] verify butter_at_table --duration 1000
 ```
 
 (the argument `--duration 1000` informs Scan on how many time-steps the execution takes).
@@ -136,7 +136,7 @@ Run `scan --help` (or just `scan`) to see the help message with the complete lis
 In order to generate execution traces, e.g. 100, we can use the command:
 
 ```bash
-scan [SCXML/MODEL/DIR/] trace snack_at_start --duration 1000 --traces 100
+scan [SCXML/MODEL/DIR/] trace butter_at_table --duration 1000 --traces 100
 ```
 
 Generated traces will be individually written to disk as gz-compressed CSV files,

@@ -1,7 +1,7 @@
 {
     "properties": [
         {
-            "name": "snack_at_table",
+            "name": "butter_at_table",
             "expression": {
                 "op": "filter",
                 "fun": "values",
