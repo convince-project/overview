@@ -22,6 +22,7 @@ setup(
     tests_require=["pytest"],
     entry_points={
         "console_scripts": [
+            "object_location_publisher = tutorial_sim.object_location_publisher:main",
             "run = tutorial_sim.run:main",
             "translate_component = tutorial_sim.translate_component:main",
         ],

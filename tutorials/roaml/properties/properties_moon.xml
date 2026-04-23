@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<properties>
+  <ports>
+    <ros_topic topic_name="object_loc" type="overarching_msgs/msg/Location" event="publish">
+      <state_var id="x" field="x" type="float32" expr="100"/>
+      <state_var id="y" field="y" type="float32" expr="100"/>
+      <state_var id="parent" field="parent" type="string" expr="''"/>
+    </ros_topic>
+  </ports>
+
+  <guarantees>
+    <property id="snack_on_table" pattern="existence">
+      <event>x &lt;= -3.0 &amp;&amp; y &lt;= -4.0 &amp;&amp; parent == 'kitchen_table_tabletop'</event>
+      <scope type="globally"/>
+      <time_interval time="15" time_unit="s"/>
+    </property>
+  </guarantees>
+
+</properties>
