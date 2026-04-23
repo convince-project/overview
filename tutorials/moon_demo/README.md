@@ -99,7 +99,7 @@ In order to simulate a shortcoming in the model of the system, a different world
 
 After running both oracle and monitor, we run the system with the new world configuration with
 ```bash
-ros2 launch tutorial_run full_simulation.launch.py policy:=bt_tree.xml closed_doors_world:=true auto_shutdown:=false
+ros2 launch tutorial_run full_simulation.launch.py policy:=bt_tree.xml world:=closed_doors_world.yaml auto_shutdown:=false
 ```
 
 You are going to see the robot fail to plan a path to the object, as the doors are closed, thus triggering the violation of the property after the defined timeout.

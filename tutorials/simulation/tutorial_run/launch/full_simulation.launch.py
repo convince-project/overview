@@ -26,10 +26,10 @@ def generate_launch_description():
         description="Start pyrobosim without GUI",
     )
 
-    closed_doors_world = DeclareLaunchArgument(
-        "closed_doors_world",
-        default_value="false",
-        description="Use the world with closed doors",
+    world_file = DeclareLaunchArgument(
+        "world",
+        default_value="world.yaml",
+        description="Choose the world file",
     )
 
     auto_shutdown = DeclareLaunchArgument(
@@ -46,7 +46,7 @@ def generate_launch_description():
         emulate_tty=True,
         parameters=[
             {"headless": LaunchConfiguration("headless")},
-            {"closed_doors_world": LaunchConfiguration("closed_doors_world")},
+            {"world": LaunchConfiguration("world")},
         ],
     )
 
@@ -107,7 +107,7 @@ def generate_launch_description():
             policy_dir,
             policy_name,
             headless_arg,
-            closed_doors_world,
+            world_file,
             auto_shutdown,
             simulator,
             translator,
