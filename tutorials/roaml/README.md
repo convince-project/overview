@@ -6,6 +6,11 @@ This folder contains increasingly complex RoAML models for the overarching tutor
 
 Each RoAML model consists of an entry xml file (e.g. [main.xml](main.xml)), that in turns references to one or more ASCXML models (e.g. representing the environment, ROS nodes, or other executables), a BT policy and the models of the custom BT plugins (if any).
 
+On YouTube, we provide two videos related to this tutorial, to run the tutorial using:
+* AS2FM and SMC STORM ((video)[https://youtu.be/QjpzzxHrIsc?si=WiBrDq5Z4JlG4AkA]).
+* AS2FM and SCAN ((video)[https://youtu.be/QXSSD54s00M?si=dWXslFJXmFc2-b-o]).
+Similarly, a video showing how to run this tutorial using AS2FM and SCAN is available on [YouTube]
+
 ### Environments
 
 For this tutorial, we prepared three environments, of increasing complexity. All models of the environment can be found in the [environment folder](environment).

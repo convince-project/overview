@@ -3,6 +3,8 @@
 These tutorials are designed to give you a introduction to the tools that the CONVINCE toolbox provides by walking you through using them on a simple example.
 The example that all the tutorials are based on is a fetch and carry task, where a mobile robot moves in a household environment, picks up an object, and delivers it to a target location.
 
+An introduction to this tutorial can be found on (YouTube)[https://youtu.be/qqILxxpxEDo?si=0l5uqv357f3317x-].
+
 ## Prerequisites
 
 To follow the tutorials using the provided Docker image, you need to have `docker` and `docker compose` installed on your machine.

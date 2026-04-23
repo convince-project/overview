@@ -2,6 +2,8 @@
 
 This demo shows the robot executing refined behaviours within the Pyrobosim simulation.
 
+A video of this tutorial is available on [YouTube](https://youtu.be/FGWbAZ63YLA?si=y0SEF9Yo12_D31Ax).
+
 ## Starting the Docker Container for this Tutorial
 
 ### Running the Docker Container
