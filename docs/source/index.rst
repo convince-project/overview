@@ -138,12 +138,11 @@ scan
 
 SCAN (StatistiCal ANalyzer) is a statistical model checker developed
 to verify large concurrent systems for which standard verification
-techniques do not scale. The input model of SCAN is a combination of
-Behavior Trees (BTs) described using behaviortree.cpp XML format, and
-state machines (FSMs) described using SCXML (State Chart XML) format;
-properties are described using an XML syntax for MTL (Metric Temporal
-Logic) interpreted over discrete time traces. SCAN translates the
-combination of BTs and FSMs into a Channel System (CS) whose
+techniques do not scale. The input model of SCAN is an asynchronous composition of
+state machines (FSMs) described using the SCXML (State Chart XML) format;
+properties are described using an XML syntax for pMTL (Past Metric Temporal
+Logic) interpreted over hybrid event/discrete time traces.
+SCAN translates the SCXML specification into a Channel System (CS) whose
 executions are sampled in order to find violations of the specified
 properties or establish that such properties are verified 
 with some probability and within some confidence interval. The
