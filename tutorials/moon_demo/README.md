@@ -5,6 +5,8 @@
 This tutorial shows the application of MOON, the run-time verification tool, to the pick and place demo.
 The objective is to show the complementarity of online monitoring and offline verification, by demonstrating the usefulness of monitoring in bridging the reality gap that stems from the models of the world.
 
+A video for this tutorial is available on [YouTube](https://www.youtube.com/watch?v=2m6QOYnYi3w).
+
 ## Tools usage
 
 ### Start the Docker container
