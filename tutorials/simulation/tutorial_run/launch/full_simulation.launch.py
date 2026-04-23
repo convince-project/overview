@@ -1,8 +1,9 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, EmitEvent, RegisterEventHandler, TimerAction
+from launch.conditions import IfCondition
 from launch.event_handlers import OnProcessExit
 from launch.events import Shutdown
-from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch.substitutions import LaunchConfiguration, PathJoinSubstitution, PythonExpression
 from launch_ros.actions import Node
 
 
@@ -25,19 +26,42 @@ def generate_launch_description():
         description="Start pyrobosim without GUI",
     )
 
+    world_file = DeclareLaunchArgument(
+        "world",
+        default_value="world.yaml",
+        description="Choose the world file",
+    )
+
+    auto_shutdown = DeclareLaunchArgument(
+        'auto_shutdown',
+        default_value='true',
+        description='Enables automatic shutdown when bt_executor ends',
+    )
+
     simulator = Node(
         package="tutorial_sim",
         executable="run",
         name="tutorial_sim",
         output="screen",
         emulate_tty=True,
-        parameters=[{"headless": LaunchConfiguration("headless")}],
+        parameters=[
+            {"headless": LaunchConfiguration("headless")},
+            {"world": LaunchConfiguration("world")},
+        ],
     )
 
     translator = Node(
         package="tutorial_sim",
         executable="translate_component",
         name="translate_component",
+        output="screen",
+        emulate_tty=True,
+    )
+
+    location_publisher = Node(
+        package="tutorial_sim",
+        executable="object_location_publisher",
+        name="object_location_publisher",
         output="screen",
         emulate_tty=True,
     )
@@ -70,6 +94,9 @@ def generate_launch_description():
             on_exit=[
                 TimerAction(
                     period=3.0,
+                    condition = IfCondition(
+                        PythonExpression(["'", LaunchConfiguration('auto_shutdown'), "' == 'true'"])
+                    ),
                     actions=[EmitEvent(event=Shutdown(reason="btcpp_executor finished"))]
                 )],
         )
@@ -80,8 +107,11 @@ def generate_launch_description():
             policy_dir,
             policy_name,
             headless_arg,
+            world_file,
+            auto_shutdown,
             simulator,
             translator,
+            location_publisher,
             place_object_skill,
             bt_executor,
             shutdown_on_bt_exit,
