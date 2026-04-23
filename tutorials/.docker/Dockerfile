@@ -63,7 +63,7 @@ RUN pip3 install --break-system-packages /AS2FM
 
 # (SCAN)
 RUN rustup default stable
-RUN cargo install smc_scan --version 0.1.0 --locked
+RUN cargo install smc_scan --version 0.2.0 --locked
 RUN echo "PATH=$PATH:~/.cargo/bin" >> ~/.bashrc
 
 # (MOON)
