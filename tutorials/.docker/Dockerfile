@@ -17,7 +17,7 @@ RUN apt-get update && \
     python3-pip python3-tk python3-wrapt python3-inflection \
     ros-jazzy-example-interfaces ros-jazzy-rqt-service-caller ros-jazzy-plotjuggler ros-jazzy-plotjuggler-ros \
     libczmq-dev ros-jazzy-zmqpp-vendor-dbgsym ros-jazzy-zmqpp-vendor libczmq-dev libczmq4 \
-     qt6-scxml* rustup tmux zip unzip tar
+    qt6-scxml* rustup tmux libboost-all-dev libcairo2-dev zip unzip tar
 
 # Create a ROS 2 workspace.
 RUN mkdir -p /convince_ws/src/
@@ -82,8 +82,13 @@ ENV PATH=${PATH}:/model2code/build
 
 # (SCAN)
 RUN rustup default stable
-RUN cargo install smc_scan --version 0.1.0 --locked
+RUN cargo install smc_scan --version 0.2.0 --locked
 RUN echo "PATH=$PATH:~/.cargo/bin" >> ~/.bashrc
+
+# (MOON)
+WORKDIR /
+RUN git clone https://github.com/convince-project/MOON.git
+RUN pip install -e /MOON --break-system-packages
 
 # Install REFINE-PLAN
 RUN git clone https://github.com/convince-project/refine-plan.git src/refine-plan
