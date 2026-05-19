@@ -1,0 +1,9 @@
+<root BTCPP_format="4">
+    <BehaviorTree ID="SRBT3">
+        <Sequence>
+            <NavigateToLocation name="navigate_to_kitchen" location_id="kitchen" action_name="/robot/navigate"/>
+            <NavigateToLocation name="navigate_to_fridge" location_id="fridge" action_name="/robot/navigate"/>
+            <PlaceObject name="place_snacks" action_name="robot/place"/>
+        </Sequence>
+    </BehaviorTree>
+</root>

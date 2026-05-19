@@ -1,0 +1,5 @@
+match
+  $f (located: $a, location: $p) isa is_in_front_of;
+  $a isa artificial_agent, has name $an;
+  $p isa physical_entity, has name $pn;
+get;

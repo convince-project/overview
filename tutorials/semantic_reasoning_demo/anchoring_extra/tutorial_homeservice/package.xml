@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+	<name>tutorial_homeservice</name>
+	<version>0.1.0</version>
+  <description>Bringup launcher for using the semantic anchoring stack with the home service domain ontology</description>
+  <author email="matteo.morelli@cea.fr">Matteo MORELLI</author>
+  <maintainer email="matteo.morelli@cea.fr">Matteo MORELLI</maintainer>
+  <license>CeCILL-B</license>
+
+	<buildtool_depend>ament_cmake</buildtool_depend>
+
+	<depend>rclcpp</depend>
+	<depend>rclcpp_lifecycle</depend>
+	<depend>anchoring_process</depend>
+
+	<export>
+		<build_type>ament_cmake</build_type>
+	</export>
+</package>

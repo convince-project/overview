@@ -1,0 +1,5 @@
+match
+  $p isa physical_entity, has name $pn, has id $pid;
+  $hd isa has_disposition;
+  $hc isa has_capability;
+get;

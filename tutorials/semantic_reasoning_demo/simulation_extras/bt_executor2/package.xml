@@ -1,0 +1,22 @@
+<package format="3">
+  <name>bt_executor2</name>
+  <version>0.3.0</version>
+  <description>
+  Simple BT executor.
+  </description>
+
+  <maintainer email="matteo.morelli@cea.fr">Matteo Morelli</maintainer>
+  <license>MIT</license>
+  <author>Davide Faconti</author>
+  <author>Matteo Morelli</author>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>behaviortree_ros2</depend>
+  <depend>overarching_msgs</depend>
+
+<export>
+  <build_type>ament_cmake</build_type>
+</export>
+
+</package>
