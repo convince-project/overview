@@ -209,3 +209,4 @@ This is a statistical model checking engine for DTMC models given in JANI, which
    tutorial_roaml
    tutorial_refine_plan
    tutorial_moon
+   tutorial_semantic_reasoning
