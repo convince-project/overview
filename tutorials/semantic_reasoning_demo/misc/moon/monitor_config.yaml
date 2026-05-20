@@ -1,0 +1,21 @@
+path: /convince_ws/src/tutorials/semantic_reasoning_demo/moon_extras/src/ # path to the ros
+                                                                          # workspace of the
+                                                                          # monitor package
+
+monitors: # list of generated monitors
+  - monitor:
+      id: place_monitor # monitor id
+      log: ./log.txt # file where the monitor will log the observed events
+      silent: False # the monitor prints info during its execution
+      oracle: # the oracle running and ready to check the specification
+        port: 8080 # port where the oracle is listening
+        url: 127.0.0.1 # url where itthe oracle is listening
+        action: nothing # action performed by the oracle
+      topics: # list of topics this monitor is going to intercept
+        - name: robot/exec_action_name # name of the topic
+          type: std_msgs.msg.String # type of the topic
+          action: log
+        - name: robot/force_effort_z # name of the topic
+          type: std_msgs.msg.Float32 # type of the topic
+          action: log
+

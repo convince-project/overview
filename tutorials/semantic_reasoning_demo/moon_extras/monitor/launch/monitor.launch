@@ -1,0 +1,1 @@
+<launch><node pkg="monitor" exec="place_monitor" name="place_monitor" output="screen" /></launch>

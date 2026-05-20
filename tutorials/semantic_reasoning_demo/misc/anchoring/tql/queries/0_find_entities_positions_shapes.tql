@@ -1,0 +1,7 @@
+match
+  $e isa physical_entity, has name $en;
+  $hp (owner: $e, position: $p) isa has_position;
+  $p isa position3d, has lin_x $px, has lin_y $py, has lin_z $pz;
+  $hs (owner: $e, shape: $b) isa has_shape;
+  $b isa box_shape, has width $bw, has length $bl, has height $bh;
+get;

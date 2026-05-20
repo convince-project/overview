@@ -1,0 +1,120 @@
+[
+    {
+      "id": "_dining_table",
+      "name": "dining table",
+      "setup_properties": {
+        "class": "table"
+      },
+      "DT_config": [
+        {
+          "DigitalTwin": "pyrobosim",
+          "id_DT": "dining_table"
+        }
+      ]
+    },
+    {
+      "id": "_side_table",
+      "name": "side table",
+      "setup_properties": {
+        "class": "table"
+      },
+      "DT_config": [
+        {
+          "DigitalTwin": "pyrobosim",
+          "id_DT": "side_table"
+        }
+      ]
+    },
+    {
+      "id": "_kitchen_table",
+      "name": "kitchen table",
+      "setup_properties": {
+        "class": "table"
+      },
+      "DT_config": [
+        {
+          "DigitalTwin": "pyrobosim",
+          "id_DT": "kitchen_table"
+        }
+      ]
+    },
+    {
+      "id": "_fridge",
+      "name": "fridge",
+      "setup_properties": {
+        "class": "storage_object"
+      },
+      "DT_config": [
+        {
+          "DigitalTwin": "pyrobosim",
+          "id_DT": "fridge"
+        }
+      ]
+    },
+    {
+      "id": "_soda0",
+      "name": "soda 0",
+      "setup_properties": {
+        "class": "soda"
+      },
+      "DT_config": [
+        {
+          "DigitalTwin": "pyrobosim",
+          "id_DT": "soda0"
+        }
+      ]
+    },
+    {
+      "id": "_snacks0",
+      "name": "snacks 0",
+      "setup_properties": {
+        "class": "snacks"
+      },
+      "DT_config": [
+        {
+          "DigitalTwin": "pyrobosim",
+          "id_DT": "snacks0"
+        }
+      ]
+    },
+    {
+      "id": "_butter0",
+      "name": "butter 0",
+      "setup_properties": {
+        "class": "butter"
+      },
+      "DT_config": [
+        {
+          "DigitalTwin": "pyrobosim",
+          "id_DT": "butter0"
+        }
+      ]
+    },
+    {
+      "id": "_robot",
+      "name": "robot",
+      "setup_properties": {
+        "class": "robot"
+      },
+      "DT_config": [
+        {
+          "DigitalTwin": "pyrobosim",
+          "id_DT": "robot"
+        }
+      ]
+    },
+    {
+      "id": "_place44",
+      "name": "place 44",
+      "setup_properties": {
+        "class": "place"
+      },
+      "DT_config": [
+        {
+          "DigitalTwin": "btcpp",
+          "id_DT": "place44"
+        }
+      ]
+    }
+]
+

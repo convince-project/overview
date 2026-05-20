@@ -9,7 +9,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
-    apt-utils curl fuse3 libfuse2 gdb nano \
+    apt-utils curl fuse3 libfuse2 gdb nano wget \
     terminator dbus-x11 \
     libegl1 libgl1-mesa-dev libglu1-mesa-dev '^libxcb.*-dev' libx11-xcb-dev \
     libxi-dev libxkbcommon-dev libxkbcommon-x11-dev libxrender-dev \
@@ -17,7 +17,7 @@ RUN apt-get update && \
     python3-pip python3-tk python3-wrapt python3-inflection \
     ros-jazzy-example-interfaces ros-jazzy-rqt-service-caller ros-jazzy-plotjuggler ros-jazzy-plotjuggler-ros \
     libczmq-dev ros-jazzy-zmqpp-vendor-dbgsym ros-jazzy-zmqpp-vendor libczmq-dev libczmq4 \
-    qt6-scxml* rustup tmux libboost-all-dev libcairo2-dev
+    qt6-scxml* rustup tmux libboost-all-dev libcairo2-dev nlohmann-json3-dev
 
 # Create a ROS 2 workspace.
 RUN mkdir -p /convince_ws/src/
@@ -26,7 +26,8 @@ WORKDIR /convince_ws
 # Install external dependencies.
 # (pip)
 COPY tutorials/requirements.txt /convince_ws
-RUN pip3 install --break-system-packages -r requirements.txt
+RUN pip3 install --no-cache-dir --break-system-packages --ignore-installed -r requirements.txt
+RUN pip3 install --break-system-packages --ignore-installed "setuptools<70"
 
 # (pyrobosim)
 RUN git clone -b 4.3.4 https://github.com/sea-bass/pyrobosim.git src/pyrobosim
@@ -40,11 +41,38 @@ RUN curl -O -L https://pub-32cef6782a9e411e82222dee82af193e.r2.dev/Groot2-v1.9.0
 RUN chmod +x Groot2-v1.9.0-x86_64.AppImage && \
     mv Groot2-v1.9.0-x86_64.AppImage /usr/local/bin/groot
 
+# (semantic anchoring (ros))
+RUN mkdir /usr/share/desktop-directories
+RUN curl -1sLf \
+  'https://repo.typedb.com/public/public-release/setup.deb.sh' \
+  | sudo -E bash
+RUN apt update &&\
+	apt install -y --no-install-recommends typedb=2.28.3
+RUN apt update &&\
+  wget -O /tmp/typedb-studio-linux-2.28.6-1.deb https://repo.typedb.com/public/public-release/raw/names/typedb-studio-linux-x86_64-deb/versions/2.28.6/typedb-studio-linux-x86_64-2.28.6.deb && apt install -y --no-install-recommends /tmp/typedb-studio-linux-2.28.6-1.deb && rm /tmp/typedb-studio-linux-2.28.6-1.deb
+RUN ln -s /opt/typedb-studio/bin/TypeDB\ Studio /opt/typedb-studio/bin/typedb-studio
+RUN mkdir -p /root/.typedb-studio/properties
+COPY tutorials/semantic_reasoning_demo/misc/anchoring/tql/typedb-studio.properties /root/.typedb-studio/properties/typedb-studio.properties
+RUN mkdir /sit-aw-anchoring
+WORKDIR /sit-aw-anchoring
+RUN git clone https://github.com/convince-project/sit-aw-anchoring.git /tmp/sit-aw-anchoring-temp
+RUN git clone https://github.com/convince-project/sit-aw-skrawl.git /tmp/sit-aw-skrawl-temp
+RUN mv /tmp/sit-aw-anchoring-temp/src /sit-aw-anchoring/src && \
+    rm -rf /tmp/sit-aw-anchoring-temp
+RUN mv /tmp/sit-aw-skrawl-temp/schemas /sit-aw-anchoring/src/anchoring_skrawl_plugins/skrawl/ && \
+    rm -rf /tmp/sit-aw-skrawl-temp
+RUN rosdep update && \
+    rosdep install --from-paths src -y --ignore-src --skip-keys "nlohmann_json"
+RUN source /opt/ros/jazzy/setup.bash && \
+    colcon build --symlink-install
+
 # (ros)
+WORKDIR /convince_ws
 COPY tutorials/ /convince_ws/src/tutorials/
 RUN rosdep update && \
-    rosdep install --from-paths src -y --ignore-src
+    rosdep install --from-paths src -y --ignore-src --skip-keys "anchoring_process anchoring_process_interfaces nlohmann_json"
 RUN source /opt/ros/jazzy/setup.bash && \
+    source /sit-aw-anchoring/install/setup.bash && \
     colcon build --symlink-install && \
     source install/setup.bash
 

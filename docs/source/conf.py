@@ -19,4 +19,4 @@ html_static_path = ['_static']
 html_style = 'css/custom.css'
 
 # this allows to reference the images relative to the tutorials folder in md and also sphinx to find them from html
-html_extra_path = ['../../tutorials/', '../../tutorials/refine_plan_demo/']
+html_extra_path = ['../../tutorials/', '../../tutorials/refine_plan_demo/', '../../tutorials/semantic_reasoning_demo/']
