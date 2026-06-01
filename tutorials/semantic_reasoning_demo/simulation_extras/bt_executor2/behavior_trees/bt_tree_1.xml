@@ -1,0 +1,15 @@
+<root BTCPP_format="4">
+    <BehaviorTree ID="SRBT1">
+        <Sequence>
+            <NavigateToLocation name="navigate_to_kitchen" location_id="kitchen" action_name="/robot/navigate"/>
+            <NavigateToLocation name="navigate_to_kitchen_table" location_id="kitchen_table" action_name="robot/navigate"/>
+            <PickObject name="pick_soda" object_id="0" action_name="robot/pick"/>
+            <NavigateToLocation name="navigate_to_fridge" location_id="fridge" action_name="robot/navigate"/>
+            <PlaceObject name="place_soda" action_name="robot/place"/>
+            <NavigateToLocation name="navigate_to_dining" location_id="dining" action_name="robot/navigate"/>
+            <NavigateToLocation name="navigate_to_side_table" location_id="side_table" action_name="robot/navigate"/>
+            <PickObject name="pick_snacks" object_id="2" action_name="robot/pick"/>
+
+        </Sequence>
+    </BehaviorTree>
+</root>

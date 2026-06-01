@@ -1,0 +1,7 @@
+match
+  $nmpa (evaluated_affordance: $pa, operational_context: $sit) isa non_manifested_affordance;
+  $pa (describes: $cwo, describes: $dwt, describes: $dwr) isa place_affordance;
+  (has_context: $sit, cause: $cause) isa precondition_violation;
+  (assigned_role: $ar, player: $p, context: $s) isa role_assignment;
+  $p isa physical_entity, has name $pn;
+get;

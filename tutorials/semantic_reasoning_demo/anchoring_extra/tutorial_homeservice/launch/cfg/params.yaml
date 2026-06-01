@@ -1,0 +1,10 @@
+anchoring_process:
+  ros__parameters:
+    dt:
+      service_names:
+        - "/dt/get_data"
+        - "/robot/executor/get_info"
+      timeout: 2    # seconds
+    SkrawlMoMa:
+      database_name: "convince-semantic_reasoning_demo"
+

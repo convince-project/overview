@@ -1,0 +1,5 @@
+monitors_anchoring_interface:
+  ros__parameters:
+    verdict_topics:
+      - "/place_monitor/monitor_verdict"
+    anchoring_update_state_action: "/anchoring_process/update_state"

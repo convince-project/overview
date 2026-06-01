@@ -1,0 +1,12 @@
+bt_executor2:
+  ros__parameters:
+    action_name: "/robot/executor/execute_behavior" # Optional (defaults to `bt_action_server`)
+    tick_frequency: 100 # Optional (defaults to 100 Hz)
+    groot2_port: 1667 # Optional (defaults to 1667)
+    ros_plugins_timeout: 1000  # Optional (defaults 1000 ms)
+
+    plugins:
+      - bt_executor2/bt_plugins
+
+    behavior_trees:
+      - bt_executor2/behavior_trees
