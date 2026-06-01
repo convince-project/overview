@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<properties>
+  <ports>
+    <scxml_event_send event="topic_object_loc_msg" origin="world" target="NONE">
+      <state_var id="butter_x" type="float32" expr="-4" param="ros_fields__x"/>
+      <state_var id="butter_y" type="float32" expr="-2" param="ros_fields__y"/>
+      <state_var id="butter_parent" type="string" expr="''" param="ros_fields__parent"/>
+    </scxml_event_send>
+    <scxml_event_send event="topic_robot_loc_msg" origin="world" target="NONE">
+      <state_var id="robot_x" type="float32" expr="0" param="ros_fields__x"/>
+      <state_var id="robot_y" type="float32" expr="0" param="ros_fields__y"/>
+      <state_var id="robot_parent" type="string" expr="''" param="ros_fields__parent"/>
+    </scxml_event_send>
+  </ports>
+  <guarantees>
+    <property id="butter_on_table" expr="once({ butter_x == 4.0 &amp;&amp; butter_y == 2.0 &amp;&amp; butter_parent == 'world' })"/>
+  </guarantees>
+</properties>
