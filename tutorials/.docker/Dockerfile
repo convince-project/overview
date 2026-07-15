@@ -90,8 +90,10 @@ RUN git clone https://github.com/convince-project/AS2FM.git
 RUN pip3 install --break-system-packages /AS2FM
 
 # (SCAN)
+# NOTE: Install scan with `target-cpu=native` optimization as binary artifact does not need to be portable.
+# Select version with SemVer range ^0.3 to switch automatically to latest compatible releases.
 RUN rustup default stable
-RUN cargo install smc_scan --version 0.2.0 --locked
+RUN RUSTFLAGS="-C target-cpu=native" cargo install smc_scan --version ^0.3 --locked
 RUN echo "PATH=$PATH:~/.cargo/bin" >> ~/.bashrc
 
 # (MOON)
